@@ -4,9 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
-    <title>JS index &#8212; Prompt flow  documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Search - Prompt flow  documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -49,16 +47,18 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/design-tabs.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://raw.githubusercontent.com/brynn-code/promptflow-page/main/switcher.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'Javascript';
         </script>
     <script src="_static/custom.js"></script>
+<script src="_static/searchtools.js"></script>
+<script src="_static/language_data.js"></script>
+<script src="searchindex.js"></script>
     <link rel="shortcut icon" href="_static/logo32.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="This is the JS quick start" href="how-to-guides/quick-start.html" />
+    <link rel="search" title="Search" href="#" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -79,7 +79,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
       
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+<form class="bd-search d-flex align-items-center" action="#" method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
@@ -98,7 +98,7 @@
   
 
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="index.html">
 
   
   
@@ -144,14 +144,14 @@
         
                 <li class="nav-item">
                     <a class="nav-link" href="how-to-guides/quick-start.html">
-                        This is the JS quick start
+                        Quick Start
                     </a>
                 </li>
                 
 
                 <li class="nav-item">
                     <a class="nav-link" href="how-to-guides/index.html">
-                        This is the JS index
+                        How-to Guides
                     </a>
                 </li>
                 
@@ -257,14 +257,14 @@
         
                 <li class="nav-item">
                     <a class="nav-link" href="how-to-guides/quick-start.html">
-                        This is the JS quick start
+                        Quick Start
                     </a>
                 </li>
                 
 
                 <li class="nav-item">
                     <a class="nav-link" href="how-to-guides/index.html">
-                        This is the JS index
+                        How-to Guides
                     </a>
                 </li>
                 
@@ -338,31 +338,43 @@
             </div>
             
             
-            <article class="bd-article" role="main">
-              
-  <section id="js-index">
-<h1>JS index<a class="headerlink" href="#js-index" title="Permalink to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-</section>
+<div class="bd-search-container">
+  <h1>Search</h1>
 
+  <noscript>
+    <div class="admonition error">
+      <p class="admonition-title">Error</p>
+      <p>
+        Please activate JavaScript to enable the search functionality.
+      </p>
+    </div>
+  </noscript>
 
-            </article>
-            
+  
+<form class="bd-search d-flex align-items-center" action="#" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+
+  <div id="search-results"></div>
+</div>
+
+<script>
+// Activate the search field on page load
+let searchInput = document.querySelector("form.bd-search input");
+if (searchInput) {
+  searchInput.focus();
+  searchInput.select();
+  console.log("[PST]: Set focus on search field.");
+}
+</script>
+
             
             
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='right-next' id="next-link" href="how-to-guides/quick-start.html" title="next page">
-  <div class="prev-next-info">
-      <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">This is the JS quick start</p>
-  </div>
-  <i class="fa-solid fa-angle-right"></i>
-  </a>
 </div>
             </footer>
             
@@ -379,13 +391,6 @@
 
 <div class="toc-item">
   
-
-<div class="tocsection editthispage">
-    <a href="https://github.com//microsoft/promptflow/edit/main/docs/index.md">
-        <i class="fa-solid fa-pencil"></i> Edit this page
-    </a>
-</div>
-
 </div>
 
 <div class="toc-item">
