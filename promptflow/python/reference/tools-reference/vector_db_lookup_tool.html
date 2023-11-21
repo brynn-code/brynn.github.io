@@ -1,0 +1,968 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Vector DB Lookup &#8212; Prompt flow  documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/tools-reference/vector_db_lookup_tool';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://raw.githubusercontent.com/brynn-code/brynn.github.io/main/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'Python';
+        </script>
+    <script src="../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../_static/logo32.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Embedding" href="embedding_tool.html" />
+    <link rel="prev" title="Faiss Index Lookup" href="faiss_index_lookup_tool.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Prompt flow">
+    <img src="../../_static/logo.svg" class="logo__image only-dark" alt="Prompt flow">
+  
+  
+    <p class="title logo__title">Prompt flow</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class=" navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../how-to-guides/quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../how-to-guides/index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../how-to-guides/quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../how-to-guides/index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <p aria-level="2" class="caption" role="heading"><span class="caption-text">Command Line Interface</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pf-command-reference.html">pf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pfazure-command-reference.html">pfazure</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Library Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python-library-reference/promptflow.html">PLACEHOLDER</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tool Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="llm-tool.html">LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompt-tool.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python-tool.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="serp-api-tool.html">SerpAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faiss_index_lookup_tool.html">Faiss Index Lookup</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Vector DB Lookup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embedding_tool.html">Embedding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_source_llm_tool.html">Open Source LLM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">YAML Schema</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../flow-yaml-schema-reference.html">Flow YAML Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../run-yaml-schema-reference.html">Run YAML Schema</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="vector-db-lookup">
+<h1>Vector DB Lookup<a class="headerlink" href="#vector-db-lookup" title="Permalink to this heading">#</a></h1>
+<p>Vector DB Lookup is a vector search tool that allows users to search top k similar vectors from vector database. This tool is a wrapper for multiple third-party vector databases. The list of current supported databases is as follows.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Azure Cognitive Search</p></td>
+<td><p>Microsoft’s cloud search service with built-in AI capabilities that enrich all types of information to help identify and explore relevant content at scale.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Qdrant</p></td>
+<td><p>Qdrant is a vector similarity search engine that provides a production-ready service with a convenient API to store, search and manage points (i.e. vectors) with an additional payload.</p></td>
+</tr>
+<tr class="row-even"><td><p>Weaviate</p></td>
+<td><p>Weaviate is an open source vector database that stores both objects and vectors. This allows for combining vector search with structured filtering.</p></td>
+</tr>
+</tbody>
+</table>
+<p>This tool will support more vector databases.</p>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><p>For AzureML users, the tool is installed in default image, you can use the tool without extra installation.</p></li>
+<li><p>For local users,</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">promptflow-vectordb</span></code></p>
+</li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h2>
+<p>The tool searches data from a third-party vector database. To use it, you should create resources in advance and establish connection between the tool and the resource.</p>
+<ul class="simple">
+<li><p><strong>Azure Cognitive Search:</strong></p>
+<ul>
+<li><p>Create resource <a class="reference external" href="https://learn.microsoft.com/en-us/azure/search/search-create-service-portal">Azure Cognitive Search</a>.</p></li>
+<li><p>Add “Cognitive search” connection. Fill “API key” field with “Primary admin key” from “Keys” section of created resource, and fill “API base” field with the URL, the URL format is <code class="docutils literal notranslate"><span class="pre">https://{your_serive_name}.search.windows.net</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Qdrant:</strong></p>
+<ul>
+<li><p>Follow the <a class="reference external" href="https://qdrant.tech/documentation/quick-start/">installation</a> to deploy Qdrant to a self-maintained cloud server.</p></li>
+<li><p>Add “Qdrant” connection. Fill “API base” with your self-maintained cloud server address and fill “API key” field.</p></li>
+</ul>
+</li>
+<li><p><strong>Weaviate:</strong></p>
+<ul>
+<li><p>Follow the <a class="reference external" href="https://weaviate.io/developers/weaviate/installation">installation</a> to deploy Weaviate to a self-maintained instance.</p></li>
+<li><p>Add “Weaviate” connection. Fill “API base” with your self-maintained instance address and fill “API key” field.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="inputs">
+<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this heading">#</a></h2>
+<p>The tool accepts the following inputs:</p>
+<ul>
+<li><p><strong>Azure Cognitive Search:</strong></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Required</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>connection</p></td>
+<td><p>CognitiveSearchConnection</p></td>
+<td><p>The created connection for accessing to Cognitive Search endpoint.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>index_name</p></td>
+<td><p>string</p></td>
+<td><p>The index name created in Cognitive Search resource.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>text_field</p></td>
+<td><p>string</p></td>
+<td><p>The text field name. The returned text field will populate the text of output.</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>vector_field</p></td>
+<td><p>string</p></td>
+<td><p>The vector field name. The target vector is searched in this vector field.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>search_params</p></td>
+<td><p>dict</p></td>
+<td><p>The search parameters. It’s key-value pairs. Except for parameters in the tool input list mentioned above, additional search parameters can be formed into a JSON object as search_params. For example, use <code class="docutils literal notranslate"><span class="pre">{&quot;select&quot;:</span> <span class="pre">&quot;&quot;}</span></code> as search_params to select the returned fields, use <code class="docutils literal notranslate"><span class="pre">{&quot;search&quot;:</span> <span class="pre">&quot;&quot;}</span></code> to perform a <a class="reference external" href="https://learn.microsoft.com/en-us/azure/search/search-get-started-vector#hybrid-search">hybrid search</a>.</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>search_filters</p></td>
+<td><p>dict</p></td>
+<td><p>The search filters. It’s key-value pairs, the input format is like <code class="docutils literal notranslate"><span class="pre">{&quot;filter&quot;:</span> <span class="pre">&quot;&quot;}</span></code></p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>vector</p></td>
+<td><p>list</p></td>
+<td><p>The target vector to be queried, which can be generated by Embedding tool.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>top_k</p></td>
+<td><p>int</p></td>
+<td><p>The count of top-scored entities to return. Default value is 3</p></td>
+<td><p>No</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Qdrant:</strong></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Required</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>connection</p></td>
+<td><p>QdrantConnection</p></td>
+<td><p>The created connection for accessing to Qdrant server.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>collection_name</p></td>
+<td><p>string</p></td>
+<td><p>The collection name created in self-maintained cloud server.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>text_field</p></td>
+<td><p>string</p></td>
+<td><p>The text field name. The returned text field will populate the text of output.</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>search_params</p></td>
+<td><p>dict</p></td>
+<td><p>The search parameters can be formed into a JSON object as search_params. For example, use <code class="docutils literal notranslate"><span class="pre">{&quot;params&quot;:</span> <span class="pre">{&quot;hnsw_ef&quot;:</span> <span class="pre">0,</span> <span class="pre">&quot;exact&quot;:</span> <span class="pre">false,</span> <span class="pre">&quot;quantization&quot;:</span> <span class="pre">null}}</span></code> to set search_params.</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>search_filters</p></td>
+<td><p>dict</p></td>
+<td><p>The search filters. It’s key-value pairs, the input format is like <code class="docutils literal notranslate"><span class="pre">{&quot;filter&quot;:</span> <span class="pre">{&quot;should&quot;:</span> <span class="pre">[{&quot;key&quot;:</span> <span class="pre">&quot;&quot;,</span> <span class="pre">&quot;match&quot;:</span> <span class="pre">{&quot;value&quot;:</span> <span class="pre">&quot;&quot;}}]}}</span></code></p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>vector</p></td>
+<td><p>list</p></td>
+<td><p>The target vector to be queried, which can be generated by Embedding tool.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>top_k</p></td>
+<td><p>int</p></td>
+<td><p>The count of top-scored entities to return. Default value is 3</p></td>
+<td><p>No</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Weaviate:</strong></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Required</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>connection</p></td>
+<td><p>WeaviateConnection</p></td>
+<td><p>The created connection for accessing to Weaviate.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>class_name</p></td>
+<td><p>string</p></td>
+<td><p>The class name.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>text_field</p></td>
+<td><p>string</p></td>
+<td><p>The text field name. The returned text field will populate the text of output.</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>vector</p></td>
+<td><p>list</p></td>
+<td><p>The target vector to be queried, which can be generated by Embedding tool.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>top_k</p></td>
+<td><p>int</p></td>
+<td><p>The count of top-scored entities to return. Default value is 3</p></td>
+<td><p>No</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</section>
+<section id="outputs">
+<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this heading">#</a></h2>
+<p>The following is an example JSON format response returned by the tool, which includes the top-k scored entities. The entity follows a generic schema of vector search result provided by promptflow-vectordb SDK.</p>
+<ul>
+<li><p><strong>Azure Cognitive Search:</strong></p>
+<p>For Azure Cognitive Search, the following fields are populated:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>original_entity</p></td>
+<td><p>dict</p></td>
+<td><p>the original response json from search REST API</p></td>
+</tr>
+<tr class="row-odd"><td><p>score</p></td>
+<td><p>float</p></td>
+<td><p>&#64;search.score from the original entity, which evaluates the similarity between the entity and the query vector</p></td>
+</tr>
+<tr class="row-even"><td><p>text</p></td>
+<td><p>string</p></td>
+<td><p>text of the entity</p></td>
+</tr>
+<tr class="row-odd"><td><p>vector</p></td>
+<td><p>list</p></td>
+<td><p>vector of the entity</p></td>
+</tr>
+</tbody>
+</table>
+<details>
+  <summary>Output</summary>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;original_entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;@search.score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5099789</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;your_text_filed_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample text1&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;your_vector_filed_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">-0.40517663431890405</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5856996257406859</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.1593078462266455</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.9776269170785785</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.6145604369828972</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;your_additional_field_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5099789</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample text1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;vector&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">-0.40517663431890405</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5856996257406859</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.1593078462266455</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.9776269170785785</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.6145604369828972</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</details>
+</li>
+<li><p><strong>Qdrant:</strong></p>
+<p>For Qdrant, the following fields are populated:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>original_entity</p></td>
+<td><p>dict</p></td>
+<td><p>the original response json from search REST API</p></td>
+</tr>
+<tr class="row-odd"><td><p>metadata</p></td>
+<td><p>dict</p></td>
+<td><p>payload from the original entity</p></td>
+</tr>
+<tr class="row-even"><td><p>score</p></td>
+<td><p>float</p></td>
+<td><p>score from the original entity, which evaluates the similarity between the entity and the query vector</p></td>
+</tr>
+<tr class="row-odd"><td><p>text</p></td>
+<td><p>string</p></td>
+<td><p>text of the payload</p></td>
+</tr>
+<tr class="row-even"><td><p>vector</p></td>
+<td><p>list</p></td>
+<td><p>vector of the entity</p></td>
+</tr>
+</tbody>
+</table>
+<details>
+  <summary>Output</summary>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample text1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;original_entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample text1&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;vector&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.18257418</span><span class="p">,</span><span class="w"> </span><span class="mf">0.36514837</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5477226</span><span class="p">,</span><span class="w"> </span><span class="mf">0.73029673</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample text1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;vector&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.18257418</span><span class="p">,</span><span class="w"> </span><span class="mf">0.36514837</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5477226</span><span class="p">,</span><span class="w"> </span><span class="mf">0.73029673</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</details>
+</li>
+<li><p><strong>Weaviate:</strong></p>
+<p>For Weaviate, the following fields are populated:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>original_entity</p></td>
+<td><p>dict</p></td>
+<td><p>the original response json from search REST API</p></td>
+</tr>
+<tr class="row-odd"><td><p>score</p></td>
+<td><p>float</p></td>
+<td><p>certainty from the original entity, which evaluates the similarity between the entity and the query vector</p></td>
+</tr>
+<tr class="row-even"><td><p>text</p></td>
+<td><p>string</p></td>
+<td><p>text in the original entity</p></td>
+</tr>
+<tr class="row-odd"><td><p>vector</p></td>
+<td><p>list</p></td>
+<td><p>vector of the entity</p></td>
+</tr>
+</tbody>
+</table>
+<details>
+  <summary>Output</summary>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;original_entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;_additional&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;certainty&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;vector&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="mf">0.58</span><span class="p">,</span>
+<span class="w">          </span><span class="mf">0.59</span><span class="p">,</span>
+<span class="w">          </span><span class="mf">0.6</span><span class="p">,</span>
+<span class="w">          </span><span class="mf">0.61</span><span class="p">,</span>
+<span class="w">          </span><span class="mf">0.62</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample text1.&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample text1.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;vector&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="mf">0.58</span><span class="p">,</span>
+<span class="w">      </span><span class="mf">0.59</span><span class="p">,</span>
+<span class="w">      </span><span class="mf">0.6</span><span class="p">,</span>
+<span class="w">      </span><span class="mf">0.61</span><span class="p">,</span>
+<span class="w">      </span><span class="mf">0.62</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</details>
+</li>
+</ul>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="faiss_index_lookup_tool.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Faiss Index Lookup</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="embedding_tool.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Embedding</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#requirements">
+   Requirements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inputs">
+   Inputs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outputs">
+   Outputs
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+
+<div class="tocsection editthispage">
+    <a href="https://github.com//microsoft/promptflow/edit/main/docs/reference/tools-reference/vector_db_lookup_tool.md">
+        <i class="fa-solid fa-pencil"></i> Edit this page
+    </a>
+</div>
+
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023, Microsoft.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

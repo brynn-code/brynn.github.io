@@ -1,0 +1,967 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Develop standard flow &#8212; Prompt flow  documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'how-to-guides/develop-a-flow/develop-standard-flow';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://raw.githubusercontent.com/brynn-code/brynn.github.io/main/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'Python';
+        </script>
+    <script src="../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../_static/logo32.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Develop chat flow" href="develop-chat-flow.html" />
+    <link rel="prev" title="Develop a flow" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Prompt flow">
+    <img src="../../_static/logo.svg" class="logo__image only-dark" alt="Prompt flow">
+  
+  
+    <p class="title logo__title">Prompt flow</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class=" navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Develop a flow</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Develop standard flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-chat-flow.html">Develop chat flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-evaluation-flow.html">Develop evaluation flow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../init-and-test-a-flow.html">Initialize and test a flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../add-conditional-control-to-a-flow.html">Add conditional control to a flow</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../run-and-evaluate-a-flow/index.html">Run and evaluate a flow</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../run-and-evaluate-a-flow/use-column-mapping.html">Use column mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tune-prompts-with-variants.html">Tune prompts using variants</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deploy-a-flow/index.html">Deploy a flow</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deploy-a-flow/deploy-using-dev-server.html">Deploy a flow using development server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy-a-flow/deploy-using-docker.html">Deploy a flow using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy-a-flow/deploy-using-kubernetes.html">Deploy a flow using Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy-a-flow/distribute-flow-as-executable-app.html">Distribute flow as executable app</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../enable-streaming-mode.html">Use streaming endpoints deployed from prompt flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage-connections.html">Manage connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage-runs.html">Manage runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set-global-configs.html">Set global configs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../develop-a-tool/index.html">Develop a tool</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/create-and-use-tool-package.html">Create and Use Tool Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/add-a-tool-icon.html">Adding a Tool Icon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/add-category-and-tags-for-tool.html">Adding Category and Tags for Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/use-file-path-as-tool-input.html">Using File Path as Tool Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/customize_an_llm_tool.html">Customizing an LLM Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/create-cascading-tool-inputs.html">Creating Cascading Tool Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/create-your-own-custom-strong-type-connection.html">Create and Use Your Own Custom Strong Type Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/create-dynamic-list-tool-input.html">Creating a Dynamic List Tool Input</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequency asked questions (FAQ)</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="develop-standard-flow">
+<h1>Develop standard flow<a class="headerlink" href="#develop-standard-flow" title="Permalink to this heading">#</a></h1>
+<div class="admonition-experimental-feature admonition">
+<p class="admonition-title">Experimental feature</p>
+<p>This is an experimental feature, and may change at any time. Learn <a class="reference internal" href="../faq.html#stable-vs-experimental"><span class="std std-doc">more</span></a>.</p>
+</div>
+<p>From this document, you can learn how to develop a standard flow by writing a flow yaml from scratch. You can
+find additional information about flow yaml schema in <a class="reference internal" href="../../reference/flow-yaml-schema-reference.html"><span class="doc std std-doc">Flow YAML Schema</span></a>.</p>
+<section id="flow-input-data">
+<h2>Flow input data<a class="headerlink" href="#flow-input-data" title="Permalink to this heading">#</a></h2>
+<p>The flow input data is the data that you want to process in your flow.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-0">
+CLI</label><div class="sd-tab-content docutils">
+<p>You can add a flow input in inputs section of flow yaml.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">url</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://www.microsoft.com/en-us/d/xbox-wireless-controller-stellar-shift-special-edition/94fbjc7h0h6h</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VS Code Extension" for="sd-tab-item-1">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p>When unfolding Inputs section in the authoring page, you can set and view your flow inputs, including input schema (name and type),
+and the input value.</p>
+<p><img alt="flow_input" src="../../_images/flow_input.png" /></p>
+</div>
+</div>
+<p>For Web Classification sample as shown the screenshot above, the flow input is an url of string type.
+For more input types in a python tool, please refer to <a class="reference internal" href="../../reference/tools-reference/python-tool.html#types"><span class="std std-doc">Input types</span></a>.</p>
+</section>
+<section id="develop-the-flow-using-different-tools">
+<h2>Develop the flow using different tools<a class="headerlink" href="#develop-the-flow-using-different-tools" title="Permalink to this heading">#</a></h2>
+<p>In one flow, you can consume different kinds of tools. We now support built-in tool like
+<a class="reference internal" href="../../reference/tools-reference/llm-tool.html"><span class="doc std std-doc">LLM</span></a>, <a class="reference internal" href="../../reference/tools-reference/python-tool.html"><span class="doc std std-doc">Python</span></a> and
+<a class="reference internal" href="../../reference/tools-reference/prompt-tool.html"><span class="doc std std-doc">Prompt</span></a> and
+third-party tool like <a class="reference internal" href="../../reference/tools-reference/serp-api-tool.html"><span class="doc std std-doc">Serp API</span></a>,
+<a class="reference internal" href="../../reference/tools-reference/vector_db_lookup_tool.html"><span class="doc std std-doc">Vector Search</span></a>, etc.</p>
+<section id="add-tool-as-your-need">
+<h3>Add tool as your need<a class="headerlink" href="#add-tool-as-your-need" title="Permalink to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-2">
+CLI</label><div class="sd-tab-content docutils">
+<p>You can add a tool node in nodes section of flow yaml. For example, yaml below shows how to add a Python tool node in the flow.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">nodes</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fetch_text_content_from_url</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">code</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fetch_text_content_from_url.py</span>
+<span class="w">  </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${inputs.url}</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VS Code Extension" for="sd-tab-item-3">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p>By selecting the tool card on the very top, you’ll add a new tool node to flow.</p>
+<p><img alt="add_tool" src="../../_images/add_tool.png" /></p>
+</div>
+</div>
+</section>
+<section id="edit-tool">
+<h3>Edit tool<a class="headerlink" href="#edit-tool" title="Permalink to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-4">
+CLI</label><div class="sd-tab-content docutils">
+<p>You can edit the tool by simply opening the source file and making edits. For example, we provide a simple Python tool code below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">tool</span>
+
+<span class="c1"># The inputs section will change based on the arguments of the tool function, after you save the code</span>
+<span class="c1"># Adding type to arguments and return value will help the system show the types properly</span>
+<span class="c1"># Please update the function name/signature per need</span>
+<span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">my_python_tool</span><span class="p">(</span><span class="n">input1</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+  <span class="k">return</span> <span class="s1">&#39;hello &#39;</span> <span class="o">+</span> <span class="n">input1</span>
+</pre></div>
+</div>
+<p>We also provide an LLM tool prompt below.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">Please summarize the following text in one paragraph. 100 words.</span>
+<span class="x">Do not add any information that is not in the text.</span>
+<span class="x">Text: </span><span class="cp">{{</span><span class="nv">text</span><span class="cp">}}</span>
+<span class="x">Summary:</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VS Code Extension" for="sd-tab-item-5">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p>When a new tool node is added to flow, it will be appended at the bottom of flatten view with a random name by default.
+At the top of each tool node card, there’s a toolbar for adjusting the tool node. You can move it up or down, you can delete or rename it too.
+For a python tool node, you can edit the tool code by clicking the code file. For a LLM tool node, you can edit the
+tool prompt by clicking the prompt file and adjust input parameters like connection, api and etc.
+<img alt="edit_tool" src="../../_images/edit_tool.png" /></p>
+</div>
+</div>
+</section>
+<section id="create-connection">
+<h3>Create connection<a class="headerlink" href="#create-connection" title="Permalink to this heading">#</a></h3>
+<p>Please refer to the <a class="reference internal" href="../quick-start.html#create-necessary-connections"><span class="std std-doc">Create necessary connections</span></a> for details.</p>
+</section>
+</section>
+<section id="chain-your-flow-link-nodes-together">
+<h2>Chain your flow - link nodes together<a class="headerlink" href="#chain-your-flow-link-nodes-together" title="Permalink to this heading">#</a></h2>
+<p>Before linking nodes together, you need to define and expose an interface.</p>
+<section id="define-llm-node-interface">
+<h3>Define LLM node interface<a class="headerlink" href="#define-llm-node-interface" title="Permalink to this heading">#</a></h3>
+<p>LLM node has only one output, the completion given by LLM provider.</p>
+<p>As for inputs, we offer a templating strategy that can help you create parametric prompts that accept different input
+values. Instead of fixed text, enclose your input name in <code class="docutils literal notranslate"><span class="pre">{{}}</span></code>, so it can be replaced on the fly. We use Jinja as our
+templating language. For example:</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">Your task is to classify a given url into one of the following types:</span>
+<span class="x">Movie, App, Academic, Channel, Profile, PDF or None based on the text content information.</span>
+<span class="x">The classification will be based on the url, the webpage text content summary, or both.</span>
+
+<span class="x">Here are a few examples:</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">ex</span> <span class="k">in</span> <span class="nv">examples</span> <span class="cp">%}</span>
+<span class="x">URL: </span><span class="cp">{{</span><span class="nv">ex.url</span><span class="cp">}}</span>
+<span class="x">Text content: </span><span class="cp">{{</span><span class="nv">ex.text_content</span><span class="cp">}}</span>
+<span class="x">OUTPUT:</span>
+<span class="x">{&quot;category&quot;: &quot;</span><span class="cp">{{</span><span class="nv">ex.category</span><span class="cp">}}</span><span class="x">&quot;, &quot;evidence&quot;: &quot;</span><span class="cp">{{</span><span class="nv">ex.evidence</span><span class="cp">}}</span><span class="x">&quot;}</span>
+
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+
+<span class="x">For a given URL : </span><span class="cp">{{</span><span class="nv">url</span><span class="cp">}}</span><span class="x">, and text content: </span><span class="cp">{{</span><span class="nv">text_content</span><span class="cp">}}</span><span class="x">.</span>
+<span class="x">Classify above url to complete the category and indicate evidence.</span>
+<span class="x">OUTPUT:</span>
+</pre></div>
+</div>
+</section>
+<section id="define-python-node-interface">
+<h3>Define Python node interface<a class="headerlink" href="#define-python-node-interface" title="Permalink to this heading">#</a></h3>
+<p>Python node might have multiple inputs and outputs. Define inputs and outputs as shown below.
+If you have multiple outputs, remember to make it a dictionary so that the downstream node can call each key separately.
+For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">tool</span>
+
+<span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">convert_to_dict</span><span class="p">(</span><span class="n">input_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">input_str2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">input_str2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">input_str</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;input is not valid, error: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="s2">&quot;evidence&quot;</span><span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="link-nodes-together">
+<h3>Link nodes together<a class="headerlink" href="#link-nodes-together" title="Permalink to this heading">#</a></h3>
+<p>After the interface is defined, you can use:</p>
+<ul class="simple">
+<li><p>${inputs.key} to link with flow input.</p></li>
+<li><p>${upstream_node_name.output} to link with single-output upstream node.</p></li>
+<li><p>${upstream_node_name.output.key} to link with multi-output upstream node.</p></li>
+</ul>
+<p>Below are common scenarios for linking nodes together.</p>
+</section>
+<section id="scenario-1-link-llm-node-with-flow-input-and-single-output-upstream-node">
+<h3>Scenario 1 - Link LLM node with flow input and single-output upstream node<a class="headerlink" href="#scenario-1-link-llm-node-with-flow-input-and-single-output-upstream-node" title="Permalink to this heading">#</a></h3>
+<p>After you add a new LLM node and edit the prompt file like <a class="reference internal" href="#define-llm-node-interface"><span class="std std-doc">Define LLM node interface</span></a>,
+three inputs called <code class="docutils literal notranslate"><span class="pre">url</span></code>, <code class="docutils literal notranslate"><span class="pre">examples</span></code> and <code class="docutils literal notranslate"><span class="pre">text_content</span></code> are created in inputs section.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-6">
+CLI</label><div class="sd-tab-content docutils">
+<p>You can link the LLM node input with flow input by <code class="docutils literal notranslate"><span class="pre">${inputs.url}</span></code>.
+And you can link <code class="docutils literal notranslate"><span class="pre">examples</span></code> to the upstream <code class="docutils literal notranslate"><span class="pre">prepare_examples</span></code> node and <code class="docutils literal notranslate"><span class="pre">text_content</span></code> to the <code class="docutils literal notranslate"><span class="pre">summarize_text_content</span></code> node
+by <code class="docutils literal notranslate"><span class="pre">${prepare_examples.output}</span></code> and <code class="docutils literal notranslate"><span class="pre">${summarize_text_content.output}</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">classify_with_llm</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">llm</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">code</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">classify_with_llm.jinja2</span>
+<span class="w">  </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">deployment_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text-davinci-003</span>
+<span class="w">    </span><span class="nt">suffix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">    </span><span class="nt">max_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128</span>
+<span class="w">    </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+<span class="w">    </span><span class="nt">top_p</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">echo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">presence_penalty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">frequency_penalty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">best_of</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${inputs.url}</span><span class="w">    </span><span class="c1"># Link with flow input</span>
+<span class="w">    </span><span class="nt">examples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${prepare_examples.output}</span><span class="w"> </span><span class="c1"># Link LLM node with single-output upstream node</span>
+<span class="w">    </span><span class="nt">text_content</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${summarize_text_content.output}</span><span class="w"> </span><span class="c1"># Link LLM node with single-output upstream node</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VS Code Extension" for="sd-tab-item-7">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p>In the value drop-down, select <code class="docutils literal notranslate"><span class="pre">${inputs.url}</span></code>, <code class="docutils literal notranslate"><span class="pre">${prepare_examples.output}</span></code> and <code class="docutils literal notranslate"><span class="pre">${summarize_text_content.output}</span></code>, then
+you’ll see in the graph view that the newly created LLM node is linked to the flow input, upstream <code class="docutils literal notranslate"><span class="pre">prepare_examples</span></code> and <code class="docutils literal notranslate"><span class="pre">summarize_text_content</span></code> node.</p>
+<p><img alt="link_llm_with_flow_input_single_output_node" src="../../_images/link_llm_with_flow_input_single_output_node.png" /></p>
+</div>
+</div>
+<p>When running the flow, the <code class="docutils literal notranslate"><span class="pre">url</span></code> input of the node will be replaced by flow input on the fly, and the <code class="docutils literal notranslate"><span class="pre">examples</span></code> and
+<code class="docutils literal notranslate"><span class="pre">text_content</span></code> input of the node will be replaced by <code class="docutils literal notranslate"><span class="pre">prepare_examples</span></code> and <code class="docutils literal notranslate"><span class="pre">summarize_text_content</span></code> node output on the fly.</p>
+</section>
+<section id="scenario-2-link-llm-node-with-multi-output-upstream-node">
+<h3>Scenario 2 - Link LLM node with multi-output upstream node<a class="headerlink" href="#scenario-2-link-llm-node-with-multi-output-upstream-node" title="Permalink to this heading">#</a></h3>
+<p>Suppose we want to link the newly created LLM node with <code class="docutils literal notranslate"><span class="pre">covert_to_dict</span></code> Python node whose output is a dictionary with two keys: <code class="docutils literal notranslate"><span class="pre">category</span></code> and <code class="docutils literal notranslate"><span class="pre">evidence</span></code>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-8">
+CLI</label><div class="sd-tab-content docutils">
+<p>You can link <code class="docutils literal notranslate"><span class="pre">examples</span></code> to the <code class="docutils literal notranslate"><span class="pre">evidence</span></code> output of upstream <code class="docutils literal notranslate"><span class="pre">covert_to_dict</span></code> node by <code class="docutils literal notranslate"><span class="pre">${convert_to_dict.output.evidence}</span></code> like below:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">classify_with_llm</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">llm</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">code</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">classify_with_llm.jinja2</span>
+<span class="w">  </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">deployment_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text-davinci-003</span>
+<span class="w">    </span><span class="nt">suffix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">    </span><span class="nt">max_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128</span>
+<span class="w">    </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+<span class="w">    </span><span class="nt">top_p</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">echo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">presence_penalty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">frequency_penalty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">best_of</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">text_content</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${convert_to_dict.output.evidence}</span><span class="w"> </span><span class="c1"># Link LLM node with multi-output upstream node</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VS Code Extension" for="sd-tab-item-9">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p>In the value drop-down, select <code class="docutils literal notranslate"><span class="pre">${convert_to_dict.output}</span></code>, then manually append <code class="docutils literal notranslate"><span class="pre">evidence</span></code>, then you’ll see in the graph
+view that the newly created LLM node is linked to the upstream <code class="docutils literal notranslate"><span class="pre">convert_to_dict</span> <span class="pre">node</span></code>.</p>
+<p><img alt="link_llm_with_multi_output_node" src="../../_images/link_llm_with_multi_output_node.png" /></p>
+</div>
+</div>
+<p>When running the flow, the <code class="docutils literal notranslate"><span class="pre">text_content</span></code> input of the node will be replaced by <code class="docutils literal notranslate"><span class="pre">evidence</span></code> value from <code class="docutils literal notranslate"><span class="pre">convert_to_dict</span> <span class="pre">node</span></code> output dictionary on the fly.</p>
+</section>
+<section id="scenario-3-link-python-node-with-upstream-node-flow-input">
+<h3>Scenario 3 - Link Python node with upstream node/flow input<a class="headerlink" href="#scenario-3-link-python-node-with-upstream-node-flow-input" title="Permalink to this heading">#</a></h3>
+<p>After you add a new Python node and edit the code file like <a class="reference internal" href="#define-python-node-interface"><span class="std std-doc">Define Python node interface</span></a>],
+two inputs called <code class="docutils literal notranslate"><span class="pre">input_str</span></code> and <code class="docutils literal notranslate"><span class="pre">input_str2</span></code> are created in inputs section. The linkage is the same as LLM node,
+using <code class="docutils literal notranslate"><span class="pre">${flow.input_name}</span></code> to link with flow input or <code class="docutils literal notranslate"><span class="pre">${upstream_node_name.output}</span></code> to link with upstream node.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-10">
+CLI</label><div class="sd-tab-content docutils">
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prepare_examples</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">code</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prepare_examples.py</span>
+<span class="w">  </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">input_str</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${inputs.url}</span><span class="w">  </span><span class="c1"># Link Python node with flow input</span>
+<span class="w">    </span><span class="nt">input_str2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${fetch_text_content_from_url.output}</span><span class="w"> </span><span class="c1"># Link Python node with single-output upstream node</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VS Code Extension" for="sd-tab-item-11">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p><img alt="link_python_with_flow_node_input" src="../../_images/link_python_with_flow_node_input.png" /></p>
+</div>
+</div>
+<p>When running the flow, the <code class="docutils literal notranslate"><span class="pre">input_str</span></code> input of the node will be replaced by flow input on the fly and the <code class="docutils literal notranslate"><span class="pre">input_str2</span></code>
+input of the node will be replaced by <code class="docutils literal notranslate"><span class="pre">fetch_text_content_from_url</span></code> node output dictionary on the fly.</p>
+</section>
+</section>
+<section id="set-flow-output">
+<h2>Set flow output<a class="headerlink" href="#set-flow-output" title="Permalink to this heading">#</a></h2>
+<p>When the flow is complicated, instead of checking outputs on each node, you can set flow output and check outputs of
+multiple nodes in one place. Moreover, flow output helps:</p>
+<ul class="simple">
+<li><p>Check bulk test results in one single table.</p></li>
+<li><p>Define evaluation interface mapping.</p></li>
+<li><p>Set deployment response schema.</p></li>
+</ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-12">
+CLI</label><div class="sd-tab-content docutils">
+<p>You can add flow outputs in outputs section of flow yaml . The linkage is the same as LLM node,
+using <code class="docutils literal notranslate"><span class="pre">${convert_to_dict.output.category}</span></code> to link <code class="docutils literal notranslate"><span class="pre">category</span></code> flow output with with <code class="docutils literal notranslate"><span class="pre">category</span></code> value of upstream node
+<code class="docutils literal notranslate"><span class="pre">convert_to_dict</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">category</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">reference</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${convert_to_dict.output.category}</span>
+<span class="w">  </span><span class="nt">evidence</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">reference</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${convert_to_dict.output.evidence}</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VS Code Extension" for="sd-tab-item-13">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p>First define flow output schema, then select in drop-down the node whose output you want to set as flow output.
+Since <code class="docutils literal notranslate"><span class="pre">convert_to_dict</span></code> has a dictionary output with two keys: <code class="docutils literal notranslate"><span class="pre">category</span></code> and <code class="docutils literal notranslate"><span class="pre">evidence</span></code>, you need to manually append
+<code class="docutils literal notranslate"><span class="pre">category</span></code> and <code class="docutils literal notranslate"><span class="pre">evidence</span></code> to each. Then run flow, after a while, you can check flow output in a table.</p>
+<p><img alt="flow_output" src="../../_images/flow_output.png" /></p>
+</div>
+</div>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Develop a flow</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="develop-chat-flow.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Develop chat flow</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flow-input-data">
+   Flow input data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#develop-the-flow-using-different-tools">
+   Develop the flow using different tools
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-tool-as-your-need">
+     Add tool as your need
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edit-tool">
+     Edit tool
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-connection">
+     Create connection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chain-your-flow-link-nodes-together">
+   Chain your flow - link nodes together
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-llm-node-interface">
+     Define LLM node interface
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-python-node-interface">
+     Define Python node interface
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#link-nodes-together">
+     Link nodes together
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scenario-1-link-llm-node-with-flow-input-and-single-output-upstream-node">
+     Scenario 1 - Link LLM node with flow input and single-output upstream node
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scenario-2-link-llm-node-with-multi-output-upstream-node">
+     Scenario 2 - Link LLM node with multi-output upstream node
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scenario-3-link-python-node-with-upstream-node-flow-input">
+     Scenario 3 - Link Python node with upstream node/flow input
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-flow-output">
+   Set flow output
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+
+<div class="tocsection editthispage">
+    <a href="https://github.com//microsoft/promptflow/edit/main/docs/how-to-guides/develop-a-flow/develop-standard-flow.md">
+        <i class="fa-solid fa-pencil"></i> Edit this page
+    </a>
+</div>
+
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023, Microsoft.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

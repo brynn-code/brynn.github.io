@@ -1,0 +1,1719 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>pf &#8212; Prompt flow  documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/pf-command-reference';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://raw.githubusercontent.com/brynn-code/brynn.github.io/main/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'Python';
+        </script>
+    <script src="../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../_static/logo32.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pfazure" href="pfazure-command-reference.html" />
+    <link rel="prev" title="Reference" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Prompt flow">
+    <img src="../_static/logo.svg" class="logo__image only-dark" alt="Prompt flow">
+  
+  
+    <p class="title logo__title">Prompt flow</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class=" navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../how-to-guides/quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../how-to-guides/index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../how-to-guides/quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../how-to-guides/index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <p aria-level="2" class="caption" role="heading"><span class="caption-text">Command Line Interface</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">pf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pfazure-command-reference.html">pfazure</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Library Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python-library-reference/promptflow.html">PLACEHOLDER</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tool Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/llm-tool.html">LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/prompt-tool.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/python-tool.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/serp-api-tool.html">SerpAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/faiss_index_lookup_tool.html">Faiss Index Lookup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/vector_db_lookup_tool.html">Vector DB Lookup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/embedding_tool.html">Embedding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/open_source_llm_tool.html">Open Source LLM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">YAML Schema</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="flow-yaml-schema-reference.html">Flow YAML Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run-yaml-schema-reference.html">Run YAML Schema</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="pf">
+<h1>pf<a class="headerlink" href="#pf" title="Permalink to this heading">#</a></h1>
+<div class="admonition-experimental-feature admonition">
+<p class="admonition-title">Experimental feature</p>
+<p>This is an experimental feature, and may change at any time. Learn <a class="reference internal" href="../how-to-guides/faq.html#stable-vs-experimental"><span class="std std-doc">more</span></a>.</p>
+</div>
+<p>Manage prompt flow resources with the prompt flow CLI.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-flow"><span class="std std-doc">pf flow</span></a></p></td>
+<td><p>Manage flows.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pf-connection"><span class="std std-doc">pf connection</span></a></p></td>
+<td><p>Manage connections.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-run"><span class="std std-doc">pf run</span></a></p></td>
+<td><p>Manage runs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pf-tool"><span class="std std-doc">pf tool</span></a></p></td>
+<td><p>Init or list tools.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-config"><span class="std std-doc">pf config</span></a></p></td>
+<td><p>Manage config for current user.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="pf-flow">
+<h2>pf flow<a class="headerlink" href="#pf-flow" title="Permalink to this heading">#</a></h2>
+<p>Manage promptflow flow flows.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-flow-init"><span class="std std-doc">pf flow init</span></a></p></td>
+<td><p>Initialize a prompt flow directory.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pf-flow-test"><span class="std std-doc">pf flow test</span></a></p></td>
+<td><p>Test the prompt flow or flow node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-flow-validate"><span class="std std-doc">pf flow validate</span></a></p></td>
+<td><p>Validate a flow and generate <code class="docutils literal notranslate"><span class="pre">flow.tools.json</span></code> for it.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pf-flow-build"><span class="std std-doc">pf flow build</span></a></p></td>
+<td><p>Build a flow for further sharing or deployment.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-flow-serve"><span class="std std-doc">pf flow serve</span></a></p></td>
+<td><p>Serve a flow as an endpoint.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="pf-flow-init">
+<h3>pf flow init<a class="headerlink" href="#pf-flow-init" title="Permalink to this heading">#</a></h3>
+<p>Initialize a prompt flow directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span>init<span class="w"> </span><span class="o">[</span>--flow<span class="o">]</span>
+<span class="w">             </span><span class="o">[</span>--entry<span class="o">]</span>
+<span class="w">             </span><span class="o">[</span>--function<span class="o">]</span>
+<span class="w">             </span><span class="o">[</span>--prompt-template<span class="o">]</span>
+<span class="w">             </span><span class="o">[</span>--type<span class="o">]</span>
+<span class="w">             </span><span class="o">[</span>--yes<span class="o">]</span>
+</pre></div>
+</div>
+<section id="examples">
+<h4>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h4>
+<p>Create a flow folder with code, prompts and YAML specification of the flow.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span>init<span class="w"> </span>--flow<span class="w"> </span>&lt;path-to-flow-direcotry&gt;
+</pre></div>
+</div>
+<p>Create an evaluation prompt flow</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span>init<span class="w"> </span>--flow<span class="w"> </span>&lt;path-to-flow-direcotry&gt;<span class="w"> </span>--type<span class="w"> </span>evaluation
+</pre></div>
+</div>
+<p>Create a flow in existing folder</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span>init<span class="w"> </span>--flow<span class="w"> </span>&lt;path-to-existing-folder&gt;<span class="w"> </span>--entry<span class="w"> </span>&lt;entry.py&gt;<span class="w"> </span>--function<span class="w"> </span>&lt;<span class="k">function</span>-name&gt;<span class="w"> </span>--prompt-template<span class="w"> </span>&lt;path-to-prompt-template.md&gt;
+</pre></div>
+</div>
+</section>
+<section id="optional-parameters">
+<h4>Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--flow</span></code></p>
+<p>The flow name to create.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--entry</span></code></p>
+<p>The entry file name.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--function</span></code></p>
+<p>The function name in entry file.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--prompt-template</span></code></p>
+<p>The prompt template parameter and assignment.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--type</span></code></p>
+<p>The initialized flow type.<br />
+accepted value: standard, evaluation, chat</p>
+<p><code class="docutils literal notranslate"><span class="pre">--yes</span> <span class="pre">--assume-yes</span> <span class="pre">-y</span></code></p>
+<p>Automatic yes to all prompts; assume ‘yes’ as answer to all prompts and run non-interactively.</p>
+</section>
+</section>
+<section id="pf-flow-test">
+<h3>pf flow test<a class="headerlink" href="#pf-flow-test" title="Permalink to this heading">#</a></h3>
+<p>Test the prompt flow or flow node.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--flow
+<span class="w">             </span><span class="o">[</span>--inputs<span class="o">]</span>
+<span class="w">             </span><span class="o">[</span>--node<span class="o">]</span>
+<span class="w">             </span><span class="o">[</span>--variant<span class="o">]</span>
+<span class="w">             </span><span class="o">[</span>--debug<span class="o">]</span>
+<span class="w">             </span><span class="o">[</span>--interactive<span class="o">]</span>
+<span class="w">             </span><span class="o">[</span>--verbose<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id1">
+<h4>Examples<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<p>Test the flow.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--flow<span class="w"> </span>&lt;path-to-flow-directory&gt;
+</pre></div>
+</div>
+<p>Test the flow with single line from input file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--flow<span class="w"> </span>&lt;path-to-flow-directory&gt;<span class="w"> </span>--inputs<span class="w"> </span><span class="nv">data_key1</span><span class="o">=</span>data_val1<span class="w"> </span><span class="nv">data_key2</span><span class="o">=</span>data_val2
+</pre></div>
+</div>
+<p>Test the flow with specified variant node.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--flow<span class="w"> </span>&lt;path-to-flow-directory&gt;<span class="w"> </span>--variant<span class="w"> </span><span class="s1">&#39;${node_name.variant_name}&#39;</span>
+</pre></div>
+</div>
+<p>Test the single node in the flow.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--flow<span class="w"> </span>&lt;path-to-flow-directory&gt;<span class="w"> </span>--node<span class="w"> </span>&lt;node_name&gt;
+</pre></div>
+</div>
+<p>Debug the single node in the flow.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--flow<span class="w"> </span>&lt;path-to-flow-directory&gt;<span class="w"> </span>--node<span class="w"> </span>&lt;node_name&gt;<span class="w"> </span>--debug
+</pre></div>
+</div>
+<p>Chat in the flow.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--flow<span class="w"> </span>&lt;path-to-flow-directory&gt;<span class="w"> </span>--node<span class="w"> </span>&lt;node_name&gt;<span class="w"> </span>--interactive
+</pre></div>
+</div>
+</section>
+<section id="required-parameter">
+<h4>Required Parameter<a class="headerlink" href="#required-parameter" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--flow</span></code></p>
+<p>The flow directory to test.</p>
+</section>
+<section id="id2">
+<h4>Optional Parameters<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--inputs</span></code></p>
+<p>Input data for the flow. Example: –inputs data1=data1_val data2=data2_val</p>
+<p><code class="docutils literal notranslate"><span class="pre">--node</span></code></p>
+<p>The node name in the flow need to be tested.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--variant</span></code></p>
+<p>Node &amp; variant name in format of ${node_name.variant_name}.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--debug</span></code></p>
+<p>Debug the single node in the flow.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--interactive</span></code></p>
+<p>Start a interactive chat session for chat flow.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--verbose</span></code></p>
+<p>Displays the output for each step in the chat flow.</p>
+</section>
+</section>
+<section id="pf-flow-validate">
+<h3>pf flow validate<a class="headerlink" href="#pf-flow-validate" title="Permalink to this heading">#</a></h3>
+<p>Validate the prompt flow and generate a <code class="docutils literal notranslate"><span class="pre">flow.tools.json</span></code> under <code class="docutils literal notranslate"><span class="pre">.promptflow</span></code>. This file is required when using flow as a component in a Azure ML pipeline.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span>validate<span class="w"> </span>--source
+<span class="w">                 </span><span class="o">[</span>--debug<span class="o">]</span>
+<span class="w">                 </span><span class="o">[</span>--verbose<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id3">
+<h4>Examples<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<p>Validate the flow.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span>validate<span class="w"> </span>--source<span class="w"> </span>&lt;path-to-flow&gt;
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h4>Required Parameter<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--source</span></code></p>
+<p>The flow source to validate.</p>
+</section>
+</section>
+<section id="pf-flow-build">
+<h3>pf flow build<a class="headerlink" href="#pf-flow-build" title="Permalink to this heading">#</a></h3>
+<p>Build a flow for further sharing or deployment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span>build<span class="w"> </span>--source
+<span class="w">              </span>--output
+<span class="w">              </span>--format
+<span class="w">              </span><span class="o">[</span>--variant<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--verbose<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--debug<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id5">
+<h4>Examples<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h4>
+<p>Build a flow as docker, which can be built into Docker image via <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span>build<span class="w"> </span>--source<span class="w"> </span>&lt;path-to-flow&gt;<span class="w"> </span>--output<span class="w"> </span>&lt;output-path&gt;<span class="w"> </span>--format<span class="w"> </span>docker
+</pre></div>
+</div>
+<p>Build a flow as docker with specific variant.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span>build<span class="w"> </span>--source<span class="w"> </span>&lt;path-to-flow&gt;<span class="w"> </span>--output<span class="w"> </span>&lt;output-path&gt;<span class="w"> </span>--format<span class="w"> </span>docker<span class="w"> </span>--variant<span class="w"> </span><span class="s1">&#39;${node_name.variant_name}&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h4>Required Parameter<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--source</span></code></p>
+<p>The flow or run source to be used.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--output</span></code></p>
+<p>The folder to output built flow. Need to be empty or not existed.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--format</span></code></p>
+<p>The format to build flow into</p>
+</section>
+<section id="id7">
+<h4>Optional Parameters<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--variant</span></code></p>
+<p>Node &amp; variant name in format of ${node_name.variant_name}.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--verbose</span></code></p>
+<p>Show more details for each step during build.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--debug</span></code></p>
+<p>Show debug information during build.</p>
+</section>
+</section>
+<section id="pf-flow-serve">
+<h3>pf flow serve<a class="headerlink" href="#pf-flow-serve" title="Permalink to this heading">#</a></h3>
+<p>Serving a flow as an endpoint.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span>serve<span class="w"> </span>--source
+<span class="w">              </span><span class="o">[</span>--port<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--host<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--environment-variables<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--verbose<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--debug<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id8">
+<h4>Examples<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h4>
+<p>Serve flow as an endpoint.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span>serve<span class="w"> </span>--source<span class="w"> </span>&lt;path-to-flow&gt;
+</pre></div>
+</div>
+<p>Serve flow as an endpoint with specific port and host.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span>serve<span class="w"> </span>--source<span class="w"> </span>&lt;path-to-flow&gt;<span class="w"> </span>--port<span class="w"> </span>&lt;port&gt;<span class="w"> </span>--host<span class="w"> </span>&lt;host&gt;<span class="w"> </span>--environment-variables<span class="w"> </span><span class="nv">key1</span><span class="o">=</span><span class="s2">&quot;`</span><span class="si">${</span><span class="nv">my_connection</span><span class="p">.api_key</span><span class="si">}</span><span class="s2">`&quot;</span><span class="w"> </span><span class="nv">key2</span><span class="o">=</span><span class="s2">&quot;value2&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h4>Required Parameter<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--source</span></code></p>
+<p>The flow or run source to be used.</p>
+</section>
+<section id="id10">
+<h4>Optional Parameters<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--port</span></code></p>
+<p>The port on which endpoint to run.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--host</span></code></p>
+<p>The host of endpoint.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--environment-variables</span></code></p>
+<p>Environment variables to set by specifying a property path and value. Example: –environment-variable key1=”`${my_connection.api_key}`” key2=”value2”. The value reference to connection keys will be resolved to the actual value, and all environment variables specified will be set into <code class="docutils literal notranslate"><span class="pre">os.environ</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--verbose</span></code></p>
+<p>Show more details for each step during serve.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--debug</span></code></p>
+<p>Show debug information during serve.</p>
+</section>
+</section>
+</section>
+<section id="pf-connection">
+<h2>pf connection<a class="headerlink" href="#pf-connection" title="Permalink to this heading">#</a></h2>
+<p>Manage prompt flow connections.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-connection-create"><span class="std std-doc">pf connection create</span></a></p></td>
+<td><p>Create a connection.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pf-connection-update"><span class="std std-doc">pf connection update</span></a></p></td>
+<td><p>Update a connection.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-connection-show"><span class="std std-doc">pf connection show</span></a></p></td>
+<td><p>Show details of a connection.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pf-connection-list"><span class="std std-doc">pf connection list</span></a></p></td>
+<td><p>List all the connection.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-connection-delete"><span class="std std-doc">pf connection delete</span></a></p></td>
+<td><p>Delete a connection.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="pf-connection-create">
+<h3>pf connection create<a class="headerlink" href="#pf-connection-create" title="Permalink to this heading">#</a></h3>
+<p>Create a connection.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>connection<span class="w"> </span>create<span class="w"> </span>--file
+<span class="w">                     </span><span class="o">[</span>--name<span class="o">]</span>
+<span class="w">                     </span><span class="o">[</span>--set<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id11">
+<h4>Examples<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h4>
+<p>Create a connection with YAML file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>connection<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>&lt;yaml-filename&gt;
+</pre></div>
+</div>
+<p>Create a connection with YAML file with override.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>connection<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>&lt;yaml-filename&gt;<span class="w"> </span>--set<span class="w"> </span><span class="nv">api_key</span><span class="o">=</span><span class="s2">&quot;&lt;api-key&gt;&quot;</span>
+</pre></div>
+</div>
+<p>Create a custom connection with .env file; note that overrides specified by <code class="docutils literal notranslate"><span class="pre">--set</span></code> will be ignored.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>connection<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>.env<span class="w"> </span>--name<span class="w"> </span>&lt;name&gt;
+</pre></div>
+</div>
+</section>
+<section id="id12">
+<h4>Required Parameter<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--file</span> <span class="pre">-f</span></code></p>
+<p>Local path to the YAML file containing the prompt flow connection specification.</p>
+</section>
+<section id="id13">
+<h4>Optional Parameters<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the connection.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--set</span></code></p>
+<p>Update an object by specifying a property path and value to set. Example: –set property1.property2=.</p>
+</section>
+</section>
+<section id="pf-connection-update">
+<h3>pf connection update<a class="headerlink" href="#pf-connection-update" title="Permalink to this heading">#</a></h3>
+<p>Update a connection.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>connection<span class="w"> </span>update<span class="w"> </span>--name
+<span class="w">                     </span><span class="o">[</span>--set<span class="o">]</span>
+</pre></div>
+</div>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h4>
+<p>Update a connection.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>connection<span class="w"> </span>update<span class="w"> </span>-n<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--set<span class="w"> </span><span class="nv">api_key</span><span class="o">=</span><span class="s2">&quot;&lt;api-key&gt;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h4>Required Parameter<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the connection.</p>
+</section>
+<section id="optional-parameter">
+<h4>Optional Parameter<a class="headerlink" href="#optional-parameter" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--set</span></code></p>
+<p>Update an object by specifying a property path and value to set. Example: –set property1.property2=.</p>
+</section>
+</section>
+<section id="pf-connection-show">
+<h3>pf connection show<a class="headerlink" href="#pf-connection-show" title="Permalink to this heading">#</a></h3>
+<p>Show details of a connection.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>connection<span class="w"> </span>show<span class="w"> </span>--name
+</pre></div>
+</div>
+<section id="id15">
+<h4>Required Parameter<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the connection.</p>
+</section>
+</section>
+<section id="pf-connection-list">
+<h3>pf connection list<a class="headerlink" href="#pf-connection-list" title="Permalink to this heading">#</a></h3>
+<p>List all the connection.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>connection<span class="w"> </span>list
+</pre></div>
+</div>
+</section>
+<section id="pf-connection-delete">
+<h3>pf connection delete<a class="headerlink" href="#pf-connection-delete" title="Permalink to this heading">#</a></h3>
+<p>Delete a connection.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>connection<span class="w"> </span>delete<span class="w"> </span>--name
+</pre></div>
+</div>
+<section id="id16">
+<h4>Required Parameter<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the connection.</p>
+</section>
+</section>
+</section>
+<section id="pf-run">
+<h2>pf run<a class="headerlink" href="#pf-run" title="Permalink to this heading">#</a></h2>
+<p>Manage prompt flow runs.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-run-create"><span class="std std-doc">pf run create</span></a></p></td>
+<td><p>Create a run.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pf-run-update"><span class="std std-doc">pf run update</span></a></p></td>
+<td><p>Update a run metadata, including display name, description and tags.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-run-stream"><span class="std std-doc">pf run stream</span></a></p></td>
+<td><p>Stream run logs to the console.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pf-run-list"><span class="std std-doc">pf run list</span></a></p></td>
+<td><p>List runs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-run-show"><span class="std std-doc">pf run show</span></a></p></td>
+<td><p>Show details for a run.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pf-run-show-details"><span class="std std-doc">pf run show-details</span></a></p></td>
+<td><p>Preview a run’s intput(s) and output(s).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-run-show-metrics"><span class="std std-doc">pf run show-metrics</span></a></p></td>
+<td><p>Print run metrics to the console.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pf-run-visualize"><span class="std std-doc">pf run visualize</span></a></p></td>
+<td><p>Visualize a run.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-run-archive"><span class="std std-doc">pf run archive</span></a></p></td>
+<td><p>Archive a run.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pf-run-restore"><span class="std std-doc">pf run restore</span></a></p></td>
+<td><p>Restore an archived run.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="pf-run-create">
+<h3>pf run create<a class="headerlink" href="#pf-run-create" title="Permalink to this heading">#</a></h3>
+<p>Create a run.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>create<span class="w"> </span><span class="o">[</span>--file<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--flow<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--data<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--column-mapping<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--run<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--variant<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--stream<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--environment-variables<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--connections<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>--set<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id17">
+<h4>Examples<a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h4>
+<p>Create a run with YAML file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>&lt;yaml-filename&gt;
+</pre></div>
+</div>
+<p>Create a run from flow directory and reference a run.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>create<span class="w"> </span>--flow<span class="w"> </span>&lt;path-to-flow-directory&gt;<span class="w"> </span>--data<span class="w"> </span>&lt;path-to-data-file&gt;<span class="w"> </span>--column-mapping<span class="w"> </span><span class="nv">groundtruth</span><span class="o">=</span><span class="s1">&#39;${data.answer}&#39;</span><span class="w"> </span><span class="nv">prediction</span><span class="o">=</span><span class="s1">&#39;${run.outputs.category}&#39;</span><span class="w"> </span>--run<span class="w"> </span>&lt;run-name&gt;<span class="w"> </span>--variant<span class="w"> </span><span class="s1">&#39;${summarize_text_content.variant_0}&#39;</span><span class="w"> </span>--stream
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h4>Optional Parameters<a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--file</span> <span class="pre">-f</span></code></p>
+<p>Local path to the YAML file containing the prompt flow run specification; can be overwritten by other parameters. Reference <a class="reference external" href="https://azuremlschemas.azureedge.net/promptflow/latest/Run.schema.json">here</a> for YAML schema.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--flow</span></code></p>
+<p>Local path to the flow directory.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--data</span></code></p>
+<p>Local path to the data file.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--column-mapping</span></code></p>
+<p>Inputs column mapping, use <code class="docutils literal notranslate"><span class="pre">${data.xx}</span></code> to refer to data columns, use <code class="docutils literal notranslate"><span class="pre">${run.inputs.xx}</span></code> to refer to referenced run’s data columns, and <code class="docutils literal notranslate"><span class="pre">${run.outputs.xx}</span></code> to refer to run outputs columns.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--run</span></code></p>
+<p>Referenced flow run name. For example, you can run an evaluation flow against an existing run. For example, “pf run create –flow evaluation_flow_dir –run existing_bulk_run”.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--variant</span></code></p>
+<p>Node &amp; variant name in format of <code class="docutils literal notranslate"><span class="pre">${node_name.variant_name}</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--stream</span> <span class="pre">-s</span></code></p>
+<p>Indicates whether to stream the run’s logs to the console.<br />
+default value: False</p>
+<p><code class="docutils literal notranslate"><span class="pre">--environment-variables</span></code></p>
+<p>Environment variables to set by specifying a property path and value. Example:
+<code class="docutils literal notranslate"><span class="pre">--environment-variable</span> <span class="pre">key1='${my_connection.api_key}'</span> <span class="pre">key2='value2'</span></code>. The value reference
+to connection keys will be resolved to the actual value, and all environment variables
+specified will be set into os.environ.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--connections</span></code></p>
+<p>Overwrite node level connections with provided value.
+Example: <code class="docutils literal notranslate"><span class="pre">--connections</span> <span class="pre">node1.connection=test_llm_connection</span> <span class="pre">node1.deployment_name=gpt-35-turbo</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">--set</span></code></p>
+<p>Update an object by specifying a property path and value to set.
+Example: <code class="docutils literal notranslate"><span class="pre">--set</span> <span class="pre">property1.property2=&lt;value&gt;</span></code>.</p>
+</section>
+</section>
+<section id="pf-run-update">
+<h3>pf run update<a class="headerlink" href="#pf-run-update" title="Permalink to this heading">#</a></h3>
+<p>Update a run metadata, including display name, description and tags.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>update<span class="w"> </span>--name
+<span class="w">              </span><span class="o">[</span>--set<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id19">
+<h4>Example<a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h4>
+<p>Update a run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>update<span class="w"> </span>-n<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--set<span class="w"> </span><span class="nv">display_name</span><span class="o">=</span><span class="s2">&quot;&lt;display-name&gt;&quot;</span><span class="w"> </span><span class="nv">description</span><span class="o">=</span><span class="s2">&quot;&lt;description&gt;&quot;</span><span class="w"> </span>tags.key<span class="o">=</span><span class="s2">&quot;value&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id20">
+<h4>Required Parameter<a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+</section>
+<section id="id21">
+<h4>Optional Parameter<a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--set</span></code></p>
+<p>Update an object by specifying a property path and value to set. Example: –set property1.property2=.</p>
+</section>
+</section>
+<section id="pf-run-stream">
+<h3>pf run stream<a class="headerlink" href="#pf-run-stream" title="Permalink to this heading">#</a></h3>
+<p>Stream run logs to the console.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>stream<span class="w"> </span>--name
+</pre></div>
+</div>
+<section id="id22">
+<h4>Required Parameter<a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+</section>
+</section>
+<section id="pf-run-list">
+<h3>pf run list<a class="headerlink" href="#pf-run-list" title="Permalink to this heading">#</a></h3>
+<p>List runs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>list<span class="w"> </span><span class="o">[</span>--all-results<span class="o">]</span>
+<span class="w">            </span><span class="o">[</span>--archived-only<span class="o">]</span>
+<span class="w">            </span><span class="o">[</span>--include-archived<span class="o">]</span>
+<span class="w">            </span><span class="o">[</span>--max-results<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id23">
+<h4>Optional Parameters<a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--all-results</span></code></p>
+<p>Returns all results.<br />
+default value: False</p>
+<p><code class="docutils literal notranslate"><span class="pre">--archived-only</span></code></p>
+<p>List archived runs only.<br />
+default value: False</p>
+<p><code class="docutils literal notranslate"><span class="pre">--include-archived</span></code></p>
+<p>List archived runs and active runs.<br />
+default value: False</p>
+<p><code class="docutils literal notranslate"><span class="pre">--max-results</span> <span class="pre">-r</span></code></p>
+<p>Max number of results to return. Default is 50.<br />
+default value: 50</p>
+</section>
+</section>
+<section id="pf-run-show">
+<h3>pf run show<a class="headerlink" href="#pf-run-show" title="Permalink to this heading">#</a></h3>
+<p>Show details for a run.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>show<span class="w"> </span>--name
+</pre></div>
+</div>
+<section id="id24">
+<h4>Required Parameter<a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+</section>
+</section>
+<section id="pf-run-show-details">
+<h3>pf run show-details<a class="headerlink" href="#pf-run-show-details" title="Permalink to this heading">#</a></h3>
+<p>Preview a run’s input(s) and output(s).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>show-details<span class="w"> </span>--name
+</pre></div>
+</div>
+<section id="id25">
+<h4>Required Parameter<a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+</section>
+</section>
+<section id="pf-run-show-metrics">
+<h3>pf run show-metrics<a class="headerlink" href="#pf-run-show-metrics" title="Permalink to this heading">#</a></h3>
+<p>Print run metrics to the console.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>show-metrics<span class="w"> </span>--name
+</pre></div>
+</div>
+<section id="id26">
+<h4>Required Parameter<a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+</section>
+</section>
+<section id="pf-run-visualize">
+<h3>pf run visualize<a class="headerlink" href="#pf-run-visualize" title="Permalink to this heading">#</a></h3>
+<p>Visualize a run in the browser.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>visualize<span class="w"> </span>--names
+</pre></div>
+</div>
+<section id="id27">
+<h4>Required Parameter<a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--names</span> <span class="pre">-n</span></code></p>
+<p>Name of the runs, comma separated.</p>
+</section>
+</section>
+<section id="pf-run-archive">
+<h3>pf run archive<a class="headerlink" href="#pf-run-archive" title="Permalink to this heading">#</a></h3>
+<p>Archive a run.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>archive<span class="w"> </span>--name
+</pre></div>
+</div>
+<section id="id28">
+<h4>Required Parameter<a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+</section>
+</section>
+<section id="pf-run-restore">
+<h3>pf run restore<a class="headerlink" href="#pf-run-restore" title="Permalink to this heading">#</a></h3>
+<p>Restore an archived run.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>restore<span class="w"> </span>--name
+</pre></div>
+</div>
+<section id="id29">
+<h4>Required Parameter<a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+</section>
+</section>
+</section>
+<section id="pf-tool">
+<h2>pf tool<a class="headerlink" href="#pf-tool" title="Permalink to this heading">#</a></h2>
+<p>Manage promptflow tools.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-tool-init"><span class="std std-doc">pf tool init</span></a></p></td>
+<td><p>Initialize a tool directory.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pf-tool-list"><span class="std std-doc">pf tool list</span></a></p></td>
+<td><p>List all tools in the environment.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="pf-tool-init">
+<h3>pf tool init<a class="headerlink" href="#pf-tool-init" title="Permalink to this heading">#</a></h3>
+<p>Initialize a tool directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>tool<span class="w"> </span>init<span class="w"> </span><span class="o">[</span>--package<span class="o">]</span>
+<span class="w">             </span><span class="o">[</span>--tool<span class="o">]</span>
+<span class="w">             </span><span class="o">[</span>--set<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id30">
+<h4>Examples<a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h4>
+<p>Creating a package tool from scratch.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>tool<span class="w"> </span>init<span class="w"> </span>--package<span class="w"> </span>&lt;package-name&gt;<span class="w"> </span>--tool<span class="w"> </span>&lt;tool-name&gt;
+</pre></div>
+</div>
+<p>Creating a package tool with extra info.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>tool<span class="w"> </span>init<span class="w"> </span>--package<span class="w"> </span>&lt;package-name&gt;<span class="w"> </span>--tool<span class="w"> </span>&lt;tool-name&gt;<span class="w"> </span>--set<span class="w"> </span><span class="nv">icon</span><span class="o">=</span>&lt;icon-path&gt;<span class="w"> </span><span class="nv">category</span><span class="o">=</span>&lt;tool-category&gt;<span class="w"> </span><span class="nv">tags</span><span class="o">=</span><span class="s2">&quot;{&#39;&lt;key&gt;&#39;: &#39;&lt;value&gt;&#39;}&quot;</span>
+</pre></div>
+</div>
+<p>Creating a package tool from scratch.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>tool<span class="w"> </span>init<span class="w"> </span>--package<span class="w"> </span>&lt;package-name&gt;<span class="w"> </span>--tool<span class="w"> </span>&lt;tool-name&gt;
+</pre></div>
+</div>
+<p>Creating a python tool from scratch.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>tool<span class="w"> </span>init<span class="w"> </span>--tool<span class="w"> </span>&lt;tool-name&gt;
+</pre></div>
+</div>
+</section>
+<section id="id31">
+<h4>Optional Parameters<a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--package</span></code></p>
+<p>The package name to create.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--tool</span></code></p>
+<p>The tool name to create.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--set</span></code></p>
+<p>Set extra information about the tool, like category, icon and tags. Example: –set <key>=<value>.</p>
+</section>
+</section>
+<section id="pf-tool-list">
+<h3>pf tool list<a class="headerlink" href="#pf-tool-list" title="Permalink to this heading">#</a></h3>
+<p>List all tools in the environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>tool<span class="w"> </span>list<span class="w"> </span><span class="o">[</span>--flow<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id32">
+<h4>Examples<a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h4>
+<p>List all package tool in the environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>tool<span class="w"> </span>list
+</pre></div>
+</div>
+<p>List all package tool and code tool in the flow.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>tool<span class="w"> </span>list<span class="w"> </span>--flow<span class="w"> </span>&lt;path-to-flow-direcotry&gt;
+</pre></div>
+</div>
+</section>
+<section id="id33">
+<h4>Optional Parameters<a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--flow</span></code></p>
+<p>The flow directory.</p>
+</section>
+</section>
+</section>
+<section id="pf-config">
+<h2>pf config<a class="headerlink" href="#pf-config" title="Permalink to this heading">#</a></h2>
+<p>Manage config for current user.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#pf-config-set"><span class="std std-doc">pf config set</span></a></p></td>
+<td><p>Set prompt flow configs for current user.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pf-config-show"><span class="std std-doc">pf config show</span></a></p></td>
+<td><p>Show prompt flow configs for current user.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="pf-config-set">
+<h3>pf config set<a class="headerlink" href="#pf-config-set" title="Permalink to this heading">#</a></h3>
+<p>Set prompt flow configs for current user, configs will be stored at ~/.promptflow/pf.yaml.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span>
+</pre></div>
+</div>
+<section id="id34">
+<h4>Examples<a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h4>
+<p>Config connection provider to azure workspace for current user.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>connection.provider<span class="o">=</span><span class="s2">&quot;azureml://subscriptions/&lt;your-subscription&gt;/resourceGroups/&lt;your-resourcegroup&gt;/providers/Microsoft.MachineLearningServices/workspaces/&lt;your-workspace&gt;&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="pf-config-show">
+<h3>pf config show<a class="headerlink" href="#pf-config-show" title="Permalink to this heading">#</a></h3>
+<p>Show prompt flow configs for current user.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>config<span class="w"> </span>show
+</pre></div>
+</div>
+<section id="id35">
+<h4>Examples<a class="headerlink" href="#id35" title="Permalink to this heading">#</a></h4>
+<p>Show prompt flow for current user.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>config<span class="w"> </span>show
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Reference</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="pfazure-command-reference.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">pfazure</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pf-flow">
+   pf flow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-flow-init">
+     pf flow init
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#examples">
+       Examples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#optional-parameters">
+       Optional Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-flow-test">
+     pf flow test
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Examples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#required-parameter">
+       Required Parameter
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Optional Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-flow-validate">
+     pf flow validate
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Examples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Required Parameter
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-flow-build">
+     pf flow build
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Examples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       Required Parameter
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       Optional Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-flow-serve">
+     pf flow serve
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       Examples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       Required Parameter
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       Optional Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pf-connection">
+   pf connection
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-connection-create">
+     pf connection create
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       Examples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       Required Parameter
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       Optional Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-connection-update">
+     pf connection update
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example">
+       Example
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       Required Parameter
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#optional-parameter">
+       Optional Parameter
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-connection-show">
+     pf connection show
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       Required Parameter
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-connection-list">
+     pf connection list
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-connection-delete">
+     pf connection delete
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       Required Parameter
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pf-run">
+   pf run
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-run-create">
+     pf run create
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id17">
+       Examples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       Optional Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-run-update">
+     pf run update
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       Example
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id20">
+       Required Parameter
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       Optional Parameter
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-run-stream">
+     pf run stream
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       Required Parameter
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-run-list">
+     pf run list
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id23">
+       Optional Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-run-show">
+     pf run show
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id24">
+       Required Parameter
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-run-show-details">
+     pf run show-details
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id25">
+       Required Parameter
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-run-show-metrics">
+     pf run show-metrics
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id26">
+       Required Parameter
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-run-visualize">
+     pf run visualize
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id27">
+       Required Parameter
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-run-archive">
+     pf run archive
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id28">
+       Required Parameter
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-run-restore">
+     pf run restore
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id29">
+       Required Parameter
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pf-tool">
+   pf tool
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-tool-init">
+     pf tool init
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id30">
+       Examples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id31">
+       Optional Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-tool-list">
+     pf tool list
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id32">
+       Examples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id33">
+       Optional Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pf-config">
+   pf config
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-config-set">
+     pf config set
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id34">
+       Examples
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pf-config-show">
+     pf config show
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id35">
+       Examples
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+
+<div class="tocsection editthispage">
+    <a href="https://github.com//microsoft/promptflow/edit/main/docs/reference/pf-command-reference.md">
+        <i class="fa-solid fa-pencil"></i> Edit this page
+    </a>
+</div>
+
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023, Microsoft.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

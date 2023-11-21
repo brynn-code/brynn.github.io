@@ -1,0 +1,869 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Quick Start &#8212; Prompt flow  documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'how-to-guides/quick-start';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://raw.githubusercontent.com/brynn-code/brynn.github.io/main/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'Python';
+        </script>
+    <script src="../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../_static/logo32.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How-to Guides" href="index.html" />
+    <link rel="prev" title="Prompt flow" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Prompt flow">
+    <img src="../_static/logo.svg" class="logo__image only-dark" alt="Prompt flow">
+  
+  
+    <p class="title logo__title">Prompt flow</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class=" navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item current active">
+                    <a class="nav-link" href="#">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item current active">
+                    <a class="nav-link" href="#">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this heading">#</a></h1>
+<p>This guide will walk you through the fist step using of prompt flow code-first experience.</p>
+<p><strong>Prerequisite</strong> - To make the most of this tutorial, you’ll need:</p>
+<ul class="simple">
+<li><p>Know how to program with Python :)</p></li>
+<li><p>A basic understanding of Machine Learning can be beneficial, but it’s not mandatory.</p></li>
+</ul>
+<p><strong>Learning Objectives</strong> - Upon completing this tutorial, you should learn how to:</p>
+<ul class="simple">
+<li><p>Setup your python environment to run prompt flow</p></li>
+<li><p>Clone a sample flow &amp; understand what’s a flow</p></li>
+<li><p>Understand how to edit the flow using visual editor or yaml</p></li>
+<li><p>Test the flow using your favorite experience: CLI, SDK or VS Code Extension.</p></li>
+</ul>
+<section id="set-up-your-dev-environment">
+<h2>Set up your dev environment<a class="headerlink" href="#set-up-your-dev-environment" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>A python environment with version <code class="docutils literal notranslate"><span class="pre">python=3.9</span></code> or higher version like 3.10. It’s recommended to use python environment manager <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a>. After you have installed miniconda, run below commands to create a python environment:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>pf<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9
+conda<span class="w"> </span>activate<span class="w"> </span>pf
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">promptflow</span></code> and <code class="docutils literal notranslate"><span class="pre">promptflow-tools</span></code>.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>promptflow<span class="w"> </span>promptflow-tools
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Check the installation.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># should print promptflow version, e.g. &quot;0.1.0b3&quot;</span>
+pf<span class="w"> </span>-v
+</pre></div>
+</div>
+</section>
+<section id="understand-what-s-a-flow">
+<h2>Understand what’s a flow<a class="headerlink" href="#understand-what-s-a-flow" title="Permalink to this heading">#</a></h2>
+<p>A flow, represented as a YAML file, is a DAG of functions, which is connected via input/output dependencies, and executed based on the topology by prompt flow executor. See <a class="reference internal" href="../concepts/concept-flows.html"><span class="doc std std-doc">Flows</span></a> for more details.</p>
+<section id="get-the-flow-sample">
+<h3>Get the flow sample<a class="headerlink" href="#get-the-flow-sample" title="Permalink to this heading">#</a></h3>
+<p>Clone the sample repo and check flows in folder <a class="reference external" href="https://github.com/microsoft/promptflow/tree/main/examples/flows">examples/flows</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/microsoft/promptflow.git
+</pre></div>
+</div>
+</section>
+<section id="understand-flow-directory">
+<h3>Understand flow directory<a class="headerlink" href="#understand-flow-directory" title="Permalink to this heading">#</a></h3>
+<p>The sample used in this tutorial is the <a class="reference external" href="https://github.com/microsoft/promptflow/tree/main/examples/flows/standard/web-classification">web-classification</a> flow, which categorizes URLs into several predefined classes. Classification is a traditional machine learning task, and this sample illustrates how to perform classification using GPT and prompts.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>promptflow/examples/flows/standard/web-classification
+</pre></div>
+</div>
+<p>A flow directory is a directory that contains all contents of a flow. Structure of flow folder:</p>
+<ul class="simple">
+<li><p><strong>flow.dag.yaml</strong>: The flow definition with inputs/outputs, nodes, tools and variants for authoring purpose.</p></li>
+<li><p><strong>.promptflow/flow.tools.json</strong>: It contains tools meta referenced in <code class="docutils literal notranslate"><span class="pre">flow.dag.yaml</span></code>.</p></li>
+<li><p><strong>Source code files (.py, .jinja2)</strong>: User managed, the code scripts referenced by tools.</p></li>
+<li><p><strong>requirements.txt</strong>: Python package dependencies for this flow.</p></li>
+</ul>
+<p><img alt="flow_dir" src="../_images/flow_directory.png" /></p>
+<p>In order to run this specific flow, you need to install its requirements first.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+<section id="understand-the-flow-yaml">
+<h3>Understand the flow yaml<a class="headerlink" href="#understand-the-flow-yaml" title="Permalink to this heading">#</a></h3>
+<p>The entry file of a flow directory is <a class="reference external" href="https://github.com/microsoft/promptflow/blob/main/examples/flows/standard/web-classification/flow.dag.yaml"><code class="docutils literal notranslate"><span class="pre">flow.dag.yaml</span></code></a> which describes the <code class="docutils literal notranslate"><span class="pre">DAG(Directed</span> <span class="pre">Acyclic</span> <span class="pre">Graph)</span></code> of a flow. Below is a sample of flow DAG:</p>
+<p><img alt="flow_dag" src="../_images/flow_dag.png" /></p>
+<p>This graph is rendered by VS Code extension which will be introduced in the next section.</p>
+</section>
+<section id="using-vs-code-extension-to-visualize-the-flow">
+<h3>Using VS Code Extension to visualize the flow<a class="headerlink" href="#using-vs-code-extension-to-visualize-the-flow" title="Permalink to this heading">#</a></h3>
+<p><em>Note: Prompt flow VS Code Extension is highly recommended for flow development and debugging.</em></p>
+<ol class="arabic">
+<li><p>Prerequisites for VS Code extension.</p>
+<ul class="simple">
+<li><p>Install latest stable version of <a class="reference external" href="https://code.visualstudio.com/">VS Code</a></p></li>
+<li><p>Install <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">VS Code Python extension</a></p></li>
+</ul>
+</li>
+<li><p>Install <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=prompt-flow.prompt-flow">Prompt flow for VS Code extension</a></p></li>
+<li><p>Select python interpreter</p>
+<p><img alt="vscode" src="../_images/vs_code_interpreter_0.png" />
+<img alt="vscode" src="../_images/vs_code_interpreter_1.png" /></p>
+</li>
+<li><p>Open dag in vscode. You can open the <code class="docutils literal notranslate"><span class="pre">flow.dag.yaml</span></code> as yaml file, or you can also open it in <code class="docutils literal notranslate"><span class="pre">visual</span> <span class="pre">editor</span></code>.
+<img alt="vscode" src="../_images/vs_code_dag_0.png" /></p></li>
+</ol>
+</section>
+</section>
+<section id="develop-and-test-your-flow">
+<h2>Develop and test your flow<a class="headerlink" href="#develop-and-test-your-flow" title="Permalink to this heading">#</a></h2>
+<section id="how-to-edit-the-flow">
+<h3>How to edit the flow<a class="headerlink" href="#how-to-edit-the-flow" title="Permalink to this heading">#</a></h3>
+<p>To test your flow with varying input data, you have the option to modify the default input. If you are well-versed with the structure, you may also add or remove nodes to alter the flow’s arrangement.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">$schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json</span>
+<span class="nt">inputs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">url</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="c1"># change the default value of input url here</span>
+<span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://play.google.com/store/apps/details?id=com.twitter.android</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>See more details of this topic in <a class="reference internal" href="develop-a-flow/index.html"><span class="doc std std-doc">Develop a flow</span></a>.</p>
+</section>
+<section id="create-necessary-connections">
+<h3>Create necessary connections<a class="headerlink" href="#create-necessary-connections" title="Permalink to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are using <code class="docutils literal notranslate"><span class="pre">WSL</span></code> or other OS without default keyring storage backend, you may encounter <code class="docutils literal notranslate"><span class="pre">StoreConnectionEncryptionKeyError</span></code>, please refer to <a class="reference internal" href="faq.html#connection-creation-failed-with-storeconnectionencryptionkeyerror"><span class="std std-doc">FAQ</span></a> for the solutions.</p>
+</div>
+<p>The <a class="reference internal" href="../concepts/concept-connections.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">connection</span></code></span></a> helps securely store and manage secret keys or other sensitive credentials required for interacting with LLM and other external tools for example Azure Content Safety.</p>
+<p>The sample flow <a class="reference external" href="https://github.com/microsoft/promptflow/tree/main/examples/flows/standard/web-classification">web-classification</a> uses connection <code class="docutils literal notranslate"><span class="pre">open_ai_connection</span></code> inside, e.g. <code class="docutils literal notranslate"><span class="pre">classify_with_llm</span></code> node needs to talk to <code class="docutils literal notranslate"><span class="pre">llm</span></code> using the connection.</p>
+<p>We need to set up the connection if we haven’t added it before. Once created, the connection will be stored in local db and can be used in any flow.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-0">
+CLI</label><div class="sd-tab-content docutils">
+<p>Firstly we need a connection yaml file <code class="docutils literal notranslate"><span class="pre">connection.yaml</span></code>:</p>
+<p>If you are using Azure Open AI, prepare your resource follow with this <a class="reference external" href="https://learn.microsoft.com/en-us/azure/cognitive-services/openai/how-to/create-resource?pivots=web-portal">instruction</a> and get your <code class="docutils literal notranslate"><span class="pre">api_key</span></code> if you don’t have one.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">$schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://azuremlschemas.azureedge.net/promptflow/latest/AzureOpenAIConnection.schema.json</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">open_ai_connection</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure_open_ai</span>
+<span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;test_key&gt;</span>
+<span class="nt">api_base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;test_base&gt;</span>
+<span class="nt">api_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure</span>
+<span class="nt">api_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;test_version&gt;</span>
+</pre></div>
+</div>
+<p>If you are using OpenAI, sign up account via <a class="reference external" href="https://openai.com/">OpenAI website</a>, login and <a class="reference external" href="https://platform.openai.com/account/api-keys">find personal API key</a>, then use this yaml:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">$schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://azuremlschemas.azureedge.net/promptflow/latest/OpenAIConnection.schema.json</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">open_ai_connection</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">open_ai</span>
+<span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;user-input&gt;&quot;</span>
+<span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1"># optional</span>
+</pre></div>
+</div>
+<p>Then we can use CLI command to create the connection.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>connection<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>connection.yaml
+</pre></div>
+</div>
+<p>More command details can be found in <a class="reference internal" href="../reference/pf-command-reference.html"><span class="doc std std-doc">CLI reference</span></a>.</p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="SDK" for="sd-tab-item-1">
+SDK</label><div class="sd-tab-content docutils">
+<p>In SDK, connections can be created and managed with <code class="docutils literal notranslate"><span class="pre">PFClient</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">PFClient</span>
+<span class="kn">from</span> <span class="nn">promptflow.entities</span> <span class="kn">import</span> <span class="n">AzureOpenAIConnection</span>
+
+<span class="c1"># PFClient can help manage your runs and connections.</span>
+<span class="n">pf</span> <span class="o">=</span> <span class="n">PFClient</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">conn_name</span> <span class="o">=</span> <span class="s2">&quot;open_ai_connection&quot;</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">conn_name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;using existing connection&quot;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">connection</span> <span class="o">=</span> <span class="n">AzureOpenAIConnection</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">conn_name</span><span class="p">,</span>
+        <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;&lt;test_key&gt;&quot;</span><span class="p">,</span>
+        <span class="n">api_base</span><span class="o">=</span><span class="s2">&quot;&lt;test_base&gt;&quot;</span><span class="p">,</span>
+        <span class="n">api_type</span><span class="o">=</span><span class="s2">&quot;azure&quot;</span><span class="p">,</span>
+        <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;&lt;test_version&gt;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># use this if you have an existing OpenAI account</span>
+    <span class="c1"># from promptflow.entities import OpenAIConnection</span>
+    <span class="c1"># connection = OpenAIConnection(</span>
+    <span class="c1">#     name=conn_name,</span>
+    <span class="c1">#     api_key=&quot;&lt;user-input&gt;&quot;,</span>
+    <span class="c1"># )</span>
+
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">create_or_update</span><span class="p">(</span><span class="n">connection</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;successfully created connection&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VS Code Extension" for="sd-tab-item-2">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<ol class="arabic">
+<li><p>Click the promptflow icon to enter promptflow control panel</p>
+<p><img alt="vsc_add_connection" src="../_images/vs_code_connection_0.png" /></p>
+</li>
+<li><p>Create your connection.</p>
+<p><img alt="vsc_add_connection" src="../_images/vs_code_connection_1.png" /></p>
+<p><img alt="vsc_add_connection" src="../_images/vs_code_connection_2.png" /></p>
+<p><img alt="vsc_add_connection" src="../_images/vs_code_connection_3.png" /></p>
+</li>
+</ol>
+</div>
+</div>
+<p>Learn more on more actions like delete connection in: <a class="reference internal" href="manage-connections.html"><span class="doc std std-doc">Manage connections</span></a>.</p>
+</section>
+<section id="test-the-flow">
+<h3>Test the flow<a class="headerlink" href="#test-the-flow" title="Permalink to this heading">#</a></h3>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note</p>
+<p>Testing flow will NOT create a batch run record, therefore it’s unable to use commands like <code class="docutils literal notranslate"><span class="pre">pf</span> <span class="pre">run</span> <span class="pre">show-details</span></code> to get the run information. If you want to persist the run record, see <a class="reference internal" href="run-and-evaluate-a-flow/index.html"><span class="doc std std-doc">Run and evaluate a flow</span></a></p>
+</div>
+<p>Assuming you are in working directory <code class="docutils literal notranslate"><span class="pre">promptflow/examples/flows/standard/</span></code></p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-3">
+CLI</label><div class="sd-tab-content docutils">
+<p>Change the default input to the value you want to test.</p>
+<p><img alt="q_0" src="../_images/flow-directory-and-dag-yaml.png" /></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>flow<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--flow<span class="w"> </span>web-classification<span class="w">  </span><span class="c1"># &quot;web-classification&quot; is the directory name</span>
+</pre></div>
+</div>
+<p><img alt="flow-test-output-cli" src="../_images/flow-test-output-cli.png" /></p>
+</div>
+<input id="sd-tab-item-4" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="SDK" for="sd-tab-item-4">
+SDK</label><div class="sd-tab-content docutils">
+<p>The return value of <code class="docutils literal notranslate"><span class="pre">test</span></code> function is the flow/node outputs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">PFClient</span>
+
+<span class="n">pf</span> <span class="o">=</span> <span class="n">PFClient</span><span class="p">()</span>
+
+<span class="n">flow_path</span> <span class="o">=</span> <span class="s2">&quot;web-classification&quot;</span>  <span class="c1"># &quot;web-classification&quot; is the directory name</span>
+
+<span class="c1"># Test flow</span>
+<span class="n">flow_inputs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.youtube.com/watch?v=o5ZQyXaAv1g&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Channel&quot;</span><span class="p">,</span> <span class="s2">&quot;evidence&quot;</span><span class="p">:</span> <span class="s2">&quot;Url&quot;</span><span class="p">}</span>  <span class="c1"># The inputs of the flow.</span>
+<span class="n">flow_result</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">flow</span><span class="o">=</span><span class="n">flow_path</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Flow outputs: </span><span class="si">{</span><span class="n">flow_result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Test node in the flow</span>
+<span class="n">node_name</span> <span class="o">=</span> <span class="s2">&quot;fetch_text_content_from_url&quot;</span>  <span class="c1"># The node name in the flow.</span>
+<span class="n">node_inputs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.youtube.com/watch?v=o5ZQyXaAv1g&quot;</span><span class="p">}</span>  <span class="c1"># The inputs of the node.</span>
+<span class="n">node_result</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">flow</span><span class="o">=</span><span class="n">flow_path</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">node_inputs</span><span class="p">,</span> <span class="n">node</span><span class="o">=</span><span class="n">node_name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node outputs: </span><span class="si">{</span><span class="n">node_result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Flow test outputs" src="../_images/flow_test_output.png" /></p>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VS Code Extension" for="sd-tab-item-5">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p>Use the code lens action on the top of the yaml editor to trigger flow test
+<img alt="dag_yaml_flow_test" src="../_images/test_flow_dag_yaml.gif" /></p>
+<p>Click the run flow button on the top of the visual editor to trigger flow test.
+<img alt="visual_editor_flow_test" src="../_images/test_flow_dag_editor.gif" /></p>
+</div>
+</div>
+<p>See more details of this topic in <a class="reference internal" href="init-and-test-a-flow.html"><span class="doc std std-doc">Initialize and test a flow</span></a>.</p>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">#</a></h2>
+<p>Learn more on how to:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="develop-a-flow/index.html"><span class="doc std std-doc">Develop a flow</span></a>: details on how to develop a flow by writing a flow yaml from scratch.</p></li>
+<li><p><a class="reference internal" href="init-and-test-a-flow.html"><span class="doc std std-doc">Initialize and test a flow</span></a>: details on how develop a flow from scratch or existing code.</p></li>
+<li><p><a class="reference internal" href="add-conditional-control-to-a-flow.html"><span class="doc std std-doc">Add conditional control to a flow</span></a>: how to use activate config to add conditional control to a flow.</p></li>
+<li><p><a class="reference internal" href="run-and-evaluate-a-flow/index.html"><span class="doc std std-doc">Run and evaluate a flow</span></a>: run and evaluate the flow using multi line data file.</p></li>
+<li><p><a class="reference internal" href="deploy-a-flow/index.html"><span class="doc std std-doc">Deploy a flow</span></a>: how to deploy the flow as a web app.</p></li>
+<li><p><a class="reference internal" href="manage-connections.html"><span class="doc std std-doc">Manage connections</span></a>: how to manage the endpoints/secrets information to access external services including LLMs.</p></li>
+<li><p><a class="reference internal" href="../cloud/azureai/quick-start.html"><span class="doc std std-doc">Prompt flow in Azure AI</span></a>: run and evaluate flow in Azure AI where you can collaborate with team better.</p></li>
+</ul>
+<p>And you can also check our <a class="reference external" href="https://github.com/microsoft/promptflow/tree/main/examples">examples</a>, especially:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/microsoft/promptflow/blob/main/examples/tutorials/get-started/quickstart.ipynb">Getting started with prompt flow</a>: the notebook covering the python sdk experience for sample introduced in this doc.</p></li>
+<li><p><a class="reference external" href="https://github.com/microsoft/promptflow/blob/main/examples/tutorials/e2e-development/chat-with-pdf.md">Tutorial: Chat with PDF</a>: An end-to-end tutorial on how to build a high quality chat application with prompt flow, including flow development and evaluation with metrics.</p></li>
+</ul>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Prompt flow</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="index.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">How-to Guides</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-your-dev-environment">
+   Set up your dev environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#understand-what-s-a-flow">
+   Understand what’s a flow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-the-flow-sample">
+     Get the flow sample
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#understand-flow-directory">
+     Understand flow directory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#understand-the-flow-yaml">
+     Understand the flow yaml
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-vs-code-extension-to-visualize-the-flow">
+     Using VS Code Extension to visualize the flow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#develop-and-test-your-flow">
+   Develop and test your flow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-edit-the-flow">
+     How to edit the flow
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-necessary-connections">
+     Create necessary connections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-the-flow">
+     Test the flow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#next-steps">
+   Next steps
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+
+<div class="tocsection editthispage">
+    <a href="https://github.com//microsoft/promptflow/edit/main/docs/how-to-guides/quick-start.md">
+        <i class="fa-solid fa-pencil"></i> Edit this page
+    </a>
+</div>
+
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023, Microsoft.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

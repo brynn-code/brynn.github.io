@@ -1,0 +1,831 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Create and Use Tool Package &#8212; Prompt flow  documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'how-to-guides/develop-a-tool/create-and-use-tool-package';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://raw.githubusercontent.com/brynn-code/brynn.github.io/main/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'Python';
+        </script>
+    <script src="../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../_static/logo32.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Adding a Tool Icon" href="add-a-tool-icon.html" />
+    <link rel="prev" title="Develop a tool" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Prompt flow">
+    <img src="../../_static/logo.svg" class="logo__image only-dark" alt="Prompt flow">
+  
+  
+    <p class="title logo__title">Prompt flow</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class=" navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../develop-a-flow/index.html">Develop a flow</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-flow/develop-standard-flow.html">Develop standard flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-flow/develop-chat-flow.html">Develop chat flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-flow/develop-evaluation-flow.html">Develop evaluation flow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../init-and-test-a-flow.html">Initialize and test a flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../add-conditional-control-to-a-flow.html">Add conditional control to a flow</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../run-and-evaluate-a-flow/index.html">Run and evaluate a flow</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../run-and-evaluate-a-flow/use-column-mapping.html">Use column mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tune-prompts-with-variants.html">Tune prompts using variants</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deploy-a-flow/index.html">Deploy a flow</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deploy-a-flow/deploy-using-dev-server.html">Deploy a flow using development server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy-a-flow/deploy-using-docker.html">Deploy a flow using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy-a-flow/deploy-using-kubernetes.html">Deploy a flow using Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy-a-flow/distribute-flow-as-executable-app.html">Distribute flow as executable app</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../enable-streaming-mode.html">Use streaming endpoints deployed from prompt flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage-connections.html">Manage connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage-runs.html">Manage runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set-global-configs.html">Set global configs</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Develop a tool</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Create and Use Tool Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-tool-icon.html">Adding a Tool Icon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-category-and-tags-for-tool.html">Adding Category and Tags for Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="use-file-path-as-tool-input.html">Using File Path as Tool Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customize_an_llm_tool.html">Customizing an LLM Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-cascading-tool-inputs.html">Creating Cascading Tool Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-your-own-custom-strong-type-connection.html">Create and Use Your Own Custom Strong Type Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-dynamic-list-tool-input.html">Creating a Dynamic List Tool Input</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequency asked questions (FAQ)</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="create-and-use-tool-package">
+<h1>Create and Use Tool Package<a class="headerlink" href="#create-and-use-tool-package" title="Permalink to this heading">#</a></h1>
+<p>In this document, we will guide you through the process of developing your own tool package, offering detailed steps and advice on how to utilize your creation.</p>
+<p>The custom tool is the prompt flow tool developed by yourself. If you find it useful, you can follow this guidance to make it a tool package. This will enable you to conveniently reuse it, share it with your team, or distribute it to anyone in the world.</p>
+<p>After successful installation of the package, your custom “tool” will show up in VSCode extension as below:
+<img alt="custom-tool-list" src="../../_images/custom-tool-list-in-extension.png" /></p>
+<section id="create-your-own-tool-package">
+<h2>Create your own tool package<a class="headerlink" href="#create-your-own-tool-package" title="Permalink to this heading">#</a></h2>
+<p>Your tool package should be a python package. To try it quickly, just use <a class="reference external" href="https://pypi.org/project/my-tools-package/">my-tools-package 0.0.1</a> and skip this section.</p>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h3>
+<p>Create a new conda environment using python 3.9 or 3.10. Run below command to install PromptFlow dependencies:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">promptflow</span>
+</pre></div>
+</div>
+<p>Install Pytest packages for running tests:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pytest</span> <span class="n">pytest</span><span class="o">-</span><span class="n">mock</span>
+</pre></div>
+</div>
+<p>Clone the PromptFlow repository from GitHub using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">microsoft</span><span class="o">/</span><span class="n">promptflow</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</section>
+<section id="create-custom-tool-package">
+<h3>Create custom tool package<a class="headerlink" href="#create-custom-tool-package" title="Permalink to this heading">#</a></h3>
+<p>Run below command under the root folder to create your tool project quickly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">scripts</span><span class="o">&gt;</span>\<span class="n">tool</span>\<span class="n">generate_tool_package_template</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">destination</span> <span class="o">&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">tool</span><span class="o">-</span><span class="n">project</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">package</span><span class="o">-</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">package</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">tool</span><span class="o">-</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">tool</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">function</span><span class="o">-</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">tool</span><span class="o">-</span><span class="n">function</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">D</span><span class="p">:</span>\<span class="n">proj</span>\<span class="n">github</span>\<span class="n">promptflow</span>\<span class="n">scripts</span>\<span class="n">tool</span>\<span class="n">generate_tool_package_template</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">destination</span> <span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">proj</span> <span class="o">--</span><span class="n">package</span><span class="o">-</span><span class="n">name</span> <span class="n">hello</span><span class="o">-</span><span class="n">world</span> <span class="o">--</span><span class="n">tool</span><span class="o">-</span><span class="n">name</span> <span class="n">hello_world_tool</span> <span class="o">--</span><span class="n">function</span><span class="o">-</span><span class="n">name</span> <span class="n">get_greeting_message</span>
+</pre></div>
+</div>
+<p>This auto-generated script will create one tool for you. The parameters <em>destination</em> and <em>package-name</em> are mandatory. The parameters <em>tool-name</em> and <em>function-name</em> are optional. If left unfilled, the <em>tool-name</em> will default to <em>hello_world_tool</em>, and the <em>function-name</em> will default to <em>tool-name</em>.</p>
+<p>The command will generate the tool project as follows with one tool <code class="docutils literal notranslate"><span class="pre">hello_world_tool.py</span></code> in it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>hello-world-proj/    
+│    
+├── hello_world/    
+│   ├── tools/    
+│   │   ├── __init__.py    
+│   │   ├── hello_world_tool.py    
+│   │   └── utils.py    
+│   ├── yamls/    
+│   │   └── hello_world_tool.yaml    
+│   └── __init__.py    
+│    
+├── tests/     
+│   ├── __init__.py    
+│   └── test_hello_world_tool.py    
+│    
+├── MANIFEST.in    
+│    
+└── setup.py  
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">points</span> <span class="pre">outlined</span> <span class="pre">below</span> <span class="pre">explain</span> <span class="pre">the</span> <span class="pre">purpose</span> <span class="pre">of</span> <span class="pre">each</span> <span class="pre">folder/file</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">package.</span> <span class="pre">If</span> <span class="pre">your</span> <span class="pre">aim</span> <span class="pre">is</span> <span class="pre">to</span> <span class="pre">develop</span> <span class="pre">multiple</span> <span class="pre">tools</span> <span class="pre">within</span> <span class="pre">your</span> <span class="pre">package,</span> <span class="pre">please</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">to</span> <span class="pre">closely</span> <span class="pre">examine</span> <span class="pre">point</span> <span class="pre">2</span> <span class="pre">and</span> <span class="pre">5.</span></code></p>
+<ol class="arabic">
+<li><p><strong>hello-world-proj</strong>: This is the source directory. All of your project’s source code should be placed in this directory.</p></li>
+<li><p><strong>hello-world/tools</strong>: This directory contains the individual tools for your project. Your tool package can contain either one tool or many tools. When adding a new tool, you should create another *_tool.py under the <code class="docutils literal notranslate"><span class="pre">tools</span></code> folder.</p></li>
+<li><p><strong>hello-world/tools/hello_world_tool.py</strong>: Develop your tool within the def function. Use the <code class="docutils literal notranslate"><span class="pre">&#64;tool</span></code> decorator to identify the function as a tool.</p>
+<blockquote>
+<div><p>[!Note] There are two ways to write a tool. The default and recommended way is the function implemented way. You can also use the class implementation way, referring to <a class="reference external" href="https://github.com/microsoft/promptflow/blob/main/examples/tools/tool-package-quickstart/my_tool_package/tools/my_tool_2.py">my_tool_2.py</a> as an example.</p>
+</div></blockquote>
+</li>
+<li><p><strong>hello-world/tools/utils.py</strong>: This file implements the tool list method, which collects all the tools defined. It is required to have this tool list method, as it allows the User Interface (UI) to retrieve your tools and display them within the UI.</p>
+<blockquote>
+<div><p>[!Note] There’s no need to create your own list method if you maintain the existing folder structure. You can simply use the auto-generated list method provided in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file.</p>
+</div></blockquote>
+</li>
+<li><p><strong>hello_world/yamls/hello_world_tool.yaml</strong>: Tool YAMLs defines the metadata of the tool. The tool list method, as outlined in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code>, fetches these tool YAMLs.</p>
+<blockquote>
+<div><p>[!Note] If you create a new tool, don’t forget to also create the corresponding tool YAML. You can run below command under your tool project to auto generate your tool YAML. You may want to specify <code class="docutils literal notranslate"><span class="pre">-n</span></code> for <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">-d</span></code> for <code class="docutils literal notranslate"><span class="pre">description</span></code>, which would be displayed as the tool name and tooltip in prompt flow UI.</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">scripts</span><span class="o">&gt;</span>\<span class="n">tool</span>\<span class="n">generate_package_tool_meta</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">tool_module</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">o</span> <span class="o">&lt;</span><span class="n">tool_yaml_path</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">n</span> <span class="o">&lt;</span><span class="n">tool_name</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="o">&lt;</span><span class="n">tool_description</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">D</span><span class="p">:</span>\<span class="n">proj</span>\<span class="n">github</span>\<span class="n">promptflow</span>\<span class="n">scripts</span>\<span class="n">tool</span>\<span class="n">generate_package_tool_meta</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">m</span> <span class="n">hello_world</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">hello_world_tool</span> <span class="o">-</span><span class="n">o</span> <span class="n">hello_world</span>\<span class="n">yamls</span>\<span class="n">hello_world_tool</span><span class="o">.</span><span class="n">yaml</span> <span class="o">-</span><span class="n">n</span> <span class="s2">&quot;Hello World Tool&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s2">&quot;This is my hello world tool.&quot;</span>
+</pre></div>
+</div>
+<p>To populate your tool module, adhere to the pattern &lt;package_name&gt;.tools.&lt;tool_name&gt;, which represents the folder path to your tool within the package.</p>
+</li>
+<li><p><strong>tests</strong>: This directory contains all your tests, though they are not required for creating your custom tool package. When adding a new tool, you can also create corresponding tests and place them in this directory. Run below command under your tool project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="n">tests</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>MANIFEST.in</strong>: This file is used to determine which files to include in the distribution of the project. Tool YAML files should be included in MANIFEST.in so that your tool YAMLs would be packaged and your tools can show in the UI.</p>
+<blockquote>
+<div><p>[!Note] There’s no need to update this file if you maintain the existing folder structure.</p>
+</div></blockquote>
+</li>
+<li><p><strong>setup.py</strong>: This file contains metadata about your project like the name, version, author, and more. Additionally, the entry point is automatically configured for you in the <code class="docutils literal notranslate"><span class="pre">generate_tool_package_template.py</span></code> script. In Python, configuring the entry point in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> helps establish the primary execution point for a package, streamlining its integration with other software.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">package_tools</span></code> entry point together with the tool list method are used to retrieve all the tools and display them in the UI.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+      <span class="s2">&quot;package_tools&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;&lt;your_tool_name&gt; = &lt;list_module&gt;:&lt;list_method&gt;&quot;</span><span class="p">],</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!Note] There’s no need to update this file if you maintain the existing folder structure.</p>
+</div></blockquote>
+</li>
+</ol>
+</section>
+</section>
+<section id="build-and-share-the-tool-package">
+<h2>Build and share the tool package<a class="headerlink" href="#build-and-share-the-tool-package" title="Permalink to this heading">#</a></h2>
+<p>Execute the following command in the tool package root directory to build your tool package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">sdist</span> <span class="n">bdist_wheel</span>
+</pre></div>
+</div>
+<p>This will generate a tool package <code class="docutils literal notranslate"><span class="pre">&lt;your-package&gt;-0.0.1.tar.gz</span></code> and corresponding <code class="docutils literal notranslate"><span class="pre">whl</span> <span class="pre">file</span></code> inside the <code class="docutils literal notranslate"><span class="pre">dist</span></code> folder.</p>
+<p>Create an account on PyPI if you don’t already have one, and install <code class="docutils literal notranslate"><span class="pre">twine</span></code> package by running <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">twine</span></code>.</p>
+<p>Upload your package to PyPI by running <code class="docutils literal notranslate"><span class="pre">twine</span> <span class="pre">upload</span> <span class="pre">dist/*</span></code>, this will prompt you for your Pypi username and password, and then upload your package on PyPI. Once your package is uploaded to PyPI, others can install it using pip by running <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">your-package-name</span></code>. Make sure to replace <code class="docutils literal notranslate"><span class="pre">your-package-name</span></code> with the name of your package as it appears on PyPI.</p>
+<p>If you only want to put it on Test PyPI, upload your package by running <code class="docutils literal notranslate"><span class="pre">twine</span> <span class="pre">upload</span> <span class="pre">--repository-url</span> <span class="pre">https://test.pypi.org/legacy/</span> <span class="pre">dist/*</span></code>. Once your package is uploaded to Test PyPI, others can install it using pip by running <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--index-url</span> <span class="pre">https://test.pypi.org/simple/</span> <span class="pre">your-package-name</span></code>.</p>
+</section>
+<section id="use-your-tool-from-vscode-extension">
+<h2>Use your tool from VSCode Extension<a class="headerlink" href="#use-your-tool-from-vscode-extension" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><p>Step1: Install <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=prompt-flow.prompt-flow">Prompt flow for VS Code extension</a>.</p></li>
+<li><p>Step2: Go to terminal and install your tool package in conda environment of the extension. Assume your conda env name is <code class="docutils literal notranslate"><span class="pre">prompt-flow</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">local_test</span><span class="p">)</span> <span class="n">PS</span> <span class="n">D</span><span class="p">:</span>\<span class="n">projects</span>\<span class="n">promptflow</span>\<span class="n">tool</span><span class="o">-</span><span class="n">package</span><span class="o">-</span><span class="n">quickstart</span><span class="o">&gt;</span> <span class="n">conda</span> <span class="n">activate</span> <span class="n">prompt</span><span class="o">-</span><span class="n">flow</span>
+<span class="p">(</span><span class="n">prompt</span><span class="o">-</span><span class="n">flow</span><span class="p">)</span> <span class="n">PS</span> <span class="n">D</span><span class="p">:</span>\<span class="n">projects</span>\<span class="n">promptflow</span>\<span class="n">tool</span><span class="o">-</span><span class="n">package</span><span class="o">-</span><span class="n">quickstart</span><span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>\<span class="n">dist</span>\<span class="n">my_tools_package</span><span class="o">-</span><span class="mf">0.0.1</span><span class="o">-</span><span class="n">py3</span><span class="o">-</span><span class="n">none</span><span class="o">-</span><span class="nb">any</span><span class="o">.</span><span class="n">whl</span>
+</pre></div>
+</div>
+</li>
+<li><p>Step3: Go to the extension and open one flow folder. Click ‘flow.dag.yaml’ and preview the flow. Next, click <code class="docutils literal notranslate"><span class="pre">+</span></code> button and you will see your tools. You may need to reload the windows to clean previous cache if you don’t see your tool in the list.
+<img alt="auto-list-tool-in-extension" src="../../_images/auto-list-tool-in-extension.png" /></p></li>
+</ul>
+</section>
+<section id="faqs">
+<h2>FAQs<a class="headerlink" href="#faqs" title="Permalink to this heading">#</a></h2>
+<section id="why-is-my-custom-tool-not-showing-up-in-the-ui">
+<h3>Why is my custom tool not showing up in the UI?<a class="headerlink" href="#why-is-my-custom-tool-not-showing-up-in-the-ui" title="Permalink to this heading">#</a></h3>
+<p>Confirm that the tool YAML files are included in your custom tool package. You can add the YAML files to <a class="reference external" href="https://github.com/microsoft/promptflow/blob/main/examples/tools/tool-package-quickstart/MANIFEST.in">MANIFEST.in</a> and include the package data in <a class="reference external" href="https://github.com/microsoft/promptflow/blob/main/examples/tools/tool-package-quickstart/setup.py">setup.py</a>.
+Alternatively, you can test your tool package using the script below to ensure that you’ve packaged your tool YAML files and configured the package tool entry point correctly.</p>
+<ol class="arabic">
+<li><p>Make sure to install the tool package in your conda environment before executing this script.</p></li>
+<li><p>Create a python file anywhere and copy the content below into it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pkg_resources</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
+
+<span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;List all package tools information using the `package-tools` entry point.</span>
+
+<span class="sd">    This function iterates through all entry points registered under the group &quot;package_tools.&quot;</span>
+<span class="sd">    For each tool, it imports the associated module to ensure its validity and then prints</span>
+<span class="sd">    information about the tool.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">    - Make sure your package is correctly packed to appear in the list.</span>
+<span class="sd">    - The module is imported to validate its presence and correctness.</span>
+
+<span class="sd">    Example of tool information printed:</span>
+<span class="sd">    ----identifier</span>
+<span class="sd">    {&#39;module&#39;: &#39;module_name&#39;, &#39;package&#39;: &#39;package_name&#39;, &#39;package_version&#39;: &#39;package_version&#39;, ...}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">entry_point</span> <span class="ow">in</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">iter_entry_points</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="s2">&quot;package_tools&quot;</span><span class="p">):</span>
+        <span class="n">list_tool_func</span> <span class="o">=</span> <span class="n">entry_point</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+        <span class="n">package_tools</span> <span class="o">=</span> <span class="n">list_tool_func</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">tool</span> <span class="ow">in</span> <span class="n">package_tools</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">tool</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">])</span>  <span class="c1"># Import the module to ensure its validity</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;----</span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">tool</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run this script in your conda environment. This will return the metadata of all tools installed in your local environment, and you should verify that your tools are listed.</p></li>
+</ol>
+</section>
+<section id="why-am-i-unable-to-upload-package-to-pypi">
+<h3>Why am I unable to upload package to PyPI?<a class="headerlink" href="#why-am-i-unable-to-upload-package-to-pypi" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Make sure that the entered username and password of your PyPI account are accurate.</p></li>
+<li><p>If you encounter a <code class="docutils literal notranslate"><span class="pre">403</span> <span class="pre">Forbidden</span> <span class="pre">Error</span></code>, it’s likely due to a naming conflict with an existing package. You will need to choose a different name. Package names must be unique on PyPI to avoid confusion and conflicts among users. Before creating a new package, it’s recommended to search PyPI (https://pypi.org/) to verify that your chosen name is not already taken. If the name you want is unavailable, consider selecting an alternative name or a variation that clearly differentiates your package from the existing one.</p></li>
+</ul>
+</section>
+</section>
+<section id="advanced-features">
+<h2>Advanced features<a class="headerlink" href="#advanced-features" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="add-a-tool-icon.html"><span class="doc std std-doc">Add a Tool Icon</span></a></p></li>
+<li><p><a class="reference internal" href="add-category-and-tags-for-tool.html"><span class="doc std std-doc">Add Category and Tags for Tool</span></a></p></li>
+<li><p><a class="reference internal" href="create-your-own-custom-strong-type-connection.html"><span class="doc std std-doc">Create and Use Your Own Custom Strong Type Connection</span></a></p></li>
+<li><p><a class="reference internal" href="customize_an_llm_tool.html"><span class="doc std std-doc">Customize an LLM Tool</span></a></p></li>
+<li><p><a class="reference internal" href="use-file-path-as-tool-input.html"><span class="doc std std-doc">Use File Path as Tool Input</span></a></p></li>
+<li><p><a class="reference internal" href="create-dynamic-list-tool-input.html"><span class="doc std std-doc">Create a Dynamic List Tool Input</span></a></p></li>
+<li><p><a class="reference internal" href="create-cascading-tool-inputs.html"><span class="doc std std-doc">Create Cascading Tool Inputs</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Develop a tool</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="add-a-tool-icon.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Adding a Tool Icon</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-your-own-tool-package">
+   Create your own tool package
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prerequisites">
+     Prerequisites
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-custom-tool-package">
+     Create custom tool package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-and-share-the-tool-package">
+   Build and share the tool package
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-your-tool-from-vscode-extension">
+   Use your tool from VSCode Extension
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#faqs">
+   FAQs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-is-my-custom-tool-not-showing-up-in-the-ui">
+     Why is my custom tool not showing up in the UI?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-am-i-unable-to-upload-package-to-pypi">
+     Why am I unable to upload package to PyPI?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-features">
+   Advanced features
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+
+<div class="tocsection editthispage">
+    <a href="https://github.com//microsoft/promptflow/edit/main/docs/how-to-guides/develop-a-tool/create-and-use-tool-package.md">
+        <i class="fa-solid fa-pencil"></i> Edit this page
+    </a>
+</div>
+
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023, Microsoft.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

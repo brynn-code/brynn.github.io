@@ -1,0 +1,1143 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Use streaming endpoints deployed from prompt flow &#8212; Prompt flow  documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'how-to-guides/enable-streaming-mode';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://raw.githubusercontent.com/brynn-code/brynn.github.io/main/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'Python';
+        </script>
+    <script src="../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../_static/logo32.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Manage connections" href="manage-connections.html" />
+    <link rel="prev" title="Distribute flow as executable app" href="deploy-a-flow/distribute-flow-as-executable-app.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Prompt flow">
+    <img src="../_static/logo.svg" class="logo__image only-dark" alt="Prompt flow">
+  
+  
+    <p class="title logo__title">Prompt flow</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class=" navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="develop-a-flow/index.html">Develop a flow</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-flow/develop-standard-flow.html">Develop standard flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-flow/develop-chat-flow.html">Develop chat flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-flow/develop-evaluation-flow.html">Develop evaluation flow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="init-and-test-a-flow.html">Initialize and test a flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add-conditional-control-to-a-flow.html">Add conditional control to a flow</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="run-and-evaluate-a-flow/index.html">Run and evaluate a flow</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="run-and-evaluate-a-flow/use-column-mapping.html">Use column mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tune-prompts-with-variants.html">Tune prompts using variants</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="deploy-a-flow/index.html">Deploy a flow</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="deploy-a-flow/deploy-using-dev-server.html">Deploy a flow using development server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy-a-flow/deploy-using-docker.html">Deploy a flow using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy-a-flow/deploy-using-kubernetes.html">Deploy a flow using Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy-a-flow/distribute-flow-as-executable-app.html">Distribute flow as executable app</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Use streaming endpoints deployed from prompt flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manage-connections.html">Manage connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manage-runs.html">Manage runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set-global-configs.html">Set global configs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="develop-a-tool/index.html">Develop a tool</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/create-and-use-tool-package.html">Create and Use Tool Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/add-a-tool-icon.html">Adding a Tool Icon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/add-category-and-tags-for-tool.html">Adding Category and Tags for Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/use-file-path-as-tool-input.html">Using File Path as Tool Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/customize_an_llm_tool.html">Customizing an LLM Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/create-cascading-tool-inputs.html">Creating Cascading Tool Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/create-your-own-custom-strong-type-connection.html">Create and Use Your Own Custom Strong Type Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/create-dynamic-list-tool-input.html">Creating a Dynamic List Tool Input</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequency asked questions (FAQ)</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="use-streaming-endpoints-deployed-from-prompt-flow">
+<h1>Use streaming endpoints deployed from prompt flow<a class="headerlink" href="#use-streaming-endpoints-deployed-from-prompt-flow" title="Permalink to this heading">#</a></h1>
+<p>In prompt flow, you can <a class="reference internal" href="deploy-a-flow/index.html"><span class="doc std std-doc">deploy flow as REST endpoint</span></a> for real-time inference.</p>
+<p>When consuming the endpoint by sending a request, the default behavior is that the online endpoint will keep waiting until the whole response is ready, and then send it back to the client. This can cause a long delay for the client and a poor user experience.</p>
+<p>To avoid this, you can use streaming when you consume the endpoints. Once streaming enabled, you don’t have to wait for the whole response ready. Instead, the server will send back the response in chunks as they are generated. The client can then display the response progressively, with less waiting time and more interactivity.</p>
+<p>This article will describe the scope of streaming, how streaming works, and how to consume streaming endpoints.</p>
+<section id="create-a-streaming-enabled-flow">
+<h2>Create a streaming enabled flow<a class="headerlink" href="#create-a-streaming-enabled-flow" title="Permalink to this heading">#</a></h2>
+<p>If you want to use the streaming mode, you need to create a flow that has a node that produces a string generator as the flow’s output. A string generator is an object that can return one string at a time when requested. You can use the following types of nodes to create a string generator:</p>
+<ul>
+<li><p>LLM node: This node uses a large language model to generate natural language responses based on the input.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="c">{# Sample prompt template for LLM node #}</span>
+
+<span class="x">system:</span>
+<span class="x">You are a helpful assistant.</span>
+
+<span class="x">user:</span>
+<span class="cp">{{</span><span class="nv">question</span><span class="cp">}}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Python tools node: This node allows you to write custom Python code that can yield string outputs. You can use this node to call external APIs or libraries that support streaming. For example, you can use this code to echo the input word by word:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">tool</span>
+
+<span class="c1"># Sample code echo input by yield in Python tool node</span>
+
+<span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">my_python_tool</span><span class="p">(</span><span class="n">paragraph</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">yield</span> <span class="s2">&quot;Echo: &quot;</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">paragraph</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="n">word</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>In this guide, we will use the <a class="reference external" href="https://github.com/microsoft/promptflow/tree/main/examples/flows/chat/chat-with-wikipedia">“Chat with Wikipedia”</a> sample flow as an example. This flow processes the user’s question, searches Wikipedia for relevant articles, and answers the question with information from the articles. It uses streaming mode to show the progress of the answer generation.</p>
+<p><img alt="chat_wikipedia.png" src="../_images/chat_wikipedia_center.png" /></p>
+</section>
+<section id="deploy-the-flow-as-an-online-endpoint">
+<h2>Deploy the flow as an online endpoint<a class="headerlink" href="#deploy-the-flow-as-an-online-endpoint" title="Permalink to this heading">#</a></h2>
+<p>To use the streaming mode, you need to deploy your flow as an online endpoint. This will allow you to send requests and receive responses from your flow in real time.</p>
+<p>Follow <a class="reference internal" href="deploy-a-flow/index.html"><span class="doc std std-doc">this guide</span></a> to deploy your flow as an online endpoint.</p>
+<blockquote>
+<div><p>[!NOTE]</p>
+<p>You can follow this document to deploy an <a class="reference external" href="https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/how-to-deploy-for-real-time-inference?view=azureml-api-2">online endpoint</a>.
+Please deploy with runtime environment version later than version <code class="docutils literal notranslate"><span class="pre">20230816.v10</span></code>.
+You can check your runtime version and update runtime in the run time detail page.</p>
+</div></blockquote>
+</section>
+<section id="understand-the-streaming-process">
+<h2>Understand the streaming process<a class="headerlink" href="#understand-the-streaming-process" title="Permalink to this heading">#</a></h2>
+<p>When you have an online endpoint, the client and the server need to follow specific principles for <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation">content negotiation</a> to utilize the streaming mode:</p>
+<p>Content negotiation is like a conversation between the client and the server about the preferred format of the data they want to send and receive. It ensures effective communication and agreement on the format of the exchanged data.</p>
+<p>To understand the streaming process, consider the following steps:</p>
+<ul>
+<li><p>First, the client constructs an HTTP request with the desired media type included in the <code class="docutils literal notranslate"><span class="pre">Accept</span></code> header. The media type tells the server what kind of data format the client expects. It’s like the client saying, “Hey, I’m looking for a specific format for the data you’ll send me. It could be JSON, text, or something else.” For example, <code class="docutils literal notranslate"><span class="pre">application/json</span></code> indicates a preference for JSON data, <code class="docutils literal notranslate"><span class="pre">text/event-stream</span></code> indicates a desire for streaming data, and <code class="docutils literal notranslate"><span class="pre">*/*</span></code> means the client accepts any data format.</p>
+<blockquote>
+<div><p>[!NOTE]</p>
+<p>If a request lacks an <code class="docutils literal notranslate"><span class="pre">Accept</span></code> header or has empty <code class="docutils literal notranslate"><span class="pre">Accept</span></code> header, it implies that the client will accept any media type in response. The server treats it as <code class="docutils literal notranslate"><span class="pre">*/*</span></code>.</p>
+</div></blockquote>
+</li>
+<li><p>Next, the server responds based on the media type specified in the <code class="docutils literal notranslate"><span class="pre">Accept</span></code> header. It’s important to note that the client may request multiple media types in the <code class="docutils literal notranslate"><span class="pre">Accept</span></code> header, and the server must consider its capabilities and format priorities to determine the appropriate response.</p>
+<ul>
+<li><p>First, the server checks if <code class="docutils literal notranslate"><span class="pre">text/event-stream</span></code> is explicitly specified in the <code class="docutils literal notranslate"><span class="pre">Accept</span></code> header:</p>
+<ul class="simple">
+<li><p>For a stream-enabled flow, the server returns a response with a <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> of <code class="docutils literal notranslate"><span class="pre">text/event-stream</span></code>, indicating that the data is being streamed.</p></li>
+<li><p>For a non-stream-enabled flow, the server proceeds to check for other media types specified in the header.</p></li>
+</ul>
+</li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">text/event-stream</span></code> is not specified, the server then checks if <code class="docutils literal notranslate"><span class="pre">application/json</span></code> or <code class="docutils literal notranslate"><span class="pre">*/*</span></code> is specified in the <code class="docutils literal notranslate"><span class="pre">Accept</span></code> header:</p>
+<ul class="simple">
+<li><p>In such cases, the server returns a response with a <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> of <code class="docutils literal notranslate"><span class="pre">application/json</span></code>, providing the data in JSON format.</p></li>
+</ul>
+</li>
+<li><p>If the <code class="docutils literal notranslate"><span class="pre">Accept</span></code> header specifies other media types, such as <code class="docutils literal notranslate"><span class="pre">text/html</span></code>:</p>
+<ul class="simple">
+<li><p>The server returns a <code class="docutils literal notranslate"><span class="pre">424</span></code> response with a PromptFlow runtime error code <code class="docutils literal notranslate"><span class="pre">UserError</span></code> and a runtime HTTP status <code class="docutils literal notranslate"><span class="pre">406</span></code>, indicating that the server cannot fulfill the request with the requested data format.</p></li>
+</ul>
+<blockquote>
+<div><p>Note: Please refer <a class="reference internal" href="#handle-errors"><span class="std std-doc">handle errors</span></a> for details.</p>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p>Finally, the client checks the <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> response header. If it is set to <code class="docutils literal notranslate"><span class="pre">text/event-stream</span></code>, it indicates that the data is being streamed.</p></li>
+</ul>
+<p>Let’s take a closer look at how the streaming process works. The response data in streaming mode follows the format of <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events">server-sent events (SSE)</a>.</p>
+<p>The overall process works as follows:</p>
+<section id="the-client-sends-a-message-to-the-server">
+<h3>0. The client sends a message to the server.<a class="headerlink" href="#the-client-sends-a-message-to-the-server" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">endpoint</span><span class="o">&gt;.</span><span class="n">inference</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">azure</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">score</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span>
+<span class="n">Authorization</span><span class="p">:</span> <span class="n">Bearer</span> <span class="o">&lt;</span><span class="n">key</span> <span class="ow">or</span> <span class="n">token</span> <span class="n">of</span> <span class="n">your</span> <span class="n">endpoint</span><span class="o">&gt;</span>
+<span class="n">Accept</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">event</span><span class="o">-</span><span class="n">stream</span>
+
+<span class="p">{</span>
+    <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;chat_history&quot;</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!NOTE]</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Accept</span></code> header is set to <code class="docutils literal notranslate"><span class="pre">text/event-stream</span></code> to request a stream response.</p>
+</div></blockquote>
+</section>
+<section id="the-server-sends-back-the-response-in-streaming-mode">
+<h3>1. The server sends back the response in streaming mode.<a class="headerlink" href="#the-server-sends-back-the-response-in-streaming-mode" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">event</span><span class="o">-</span><span class="n">stream</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">Connection</span><span class="p">:</span> <span class="n">close</span>
+<span class="n">Transfer</span><span class="o">-</span><span class="n">Encoding</span><span class="p">:</span> <span class="n">chunked</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;!&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; How&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; can&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; I&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; assist&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; you&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; today&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; ?&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> is set to <code class="docutils literal notranslate"><span class="pre">text/event-stream;</span> <span class="pre">charset=utf-8</span></code>, indicating the response is an event stream.</p>
+<p>The client should decode the response data as server-sent events and display them incrementally. The server will close the HTTP connection after all the data is sent.</p>
+<p>Each response event is the delta to the previous event. It is recommended for the client to keep track of the merged data in memory and send them back to the server as chat history in the next request.</p>
+</section>
+<section id="the-client-sends-another-chat-message-along-with-the-full-chat-history-to-the-server">
+<h3>2. The client sends another chat message, along with the full chat history, to the server.<a class="headerlink" href="#the-client-sends-another-chat-message-along-with-the-full-chat-history-to-the-server" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">endpoint</span><span class="o">&gt;.</span><span class="n">inference</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">azure</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">score</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span>
+<span class="n">Authorization</span><span class="p">:</span> <span class="n">Bearer</span> <span class="o">&lt;</span><span class="n">key</span> <span class="ow">or</span> <span class="n">token</span> <span class="n">of</span> <span class="n">your</span> <span class="n">endpoint</span><span class="o">&gt;</span>
+<span class="n">Accept</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">event</span><span class="o">-</span><span class="n">stream</span>
+
+<span class="p">{</span>
+    <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Glad to know you!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;chat_history&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello! How can I assist you today?&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="the-server-sends-back-the-answer-in-streaming-mode">
+<h3>3. The server sends back the answer in streaming mode.<a class="headerlink" href="#the-server-sends-back-the-answer-in-streaming-mode" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">event</span><span class="o">-</span><span class="n">stream</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">Connection</span><span class="p">:</span> <span class="n">close</span>
+<span class="n">Transfer</span><span class="o">-</span><span class="n">Encoding</span><span class="p">:</span> <span class="n">chunked</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Nice&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; to&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; know&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; you&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; too&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;!&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; Is&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; there&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; anything&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; I&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; can&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; help&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; you&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; with&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;?&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+
+</pre></div>
+</div>
+</section>
+<section id="the-chat-continues-in-a-similar-way">
+<h3>4. The chat continues in a similar way.<a class="headerlink" href="#the-chat-continues-in-a-similar-way" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="handle-errors">
+<h2>Handle errors<a class="headerlink" href="#handle-errors" title="Permalink to this heading">#</a></h2>
+<p>The client should check the HTTP response code first. See <a class="reference external" href="https://learn.microsoft.com/azure/machine-learning/how-to-troubleshoot-online-endpoints?view=azureml-api-2&amp;tabs=cli#http-status-codes">this table</a> for common error codes returned by online endpoints.</p>
+<p>If the response code is “424 Model Error”, it means that the error is caused by the model’s code. The error response from a PromptFlow model always follows this format:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;UserError&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Media type text/event-stream in Accept header is not acceptable. Supported media type(s) - application/json&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>It is always a JSON dictionary with only one key “error” defined.</p></li>
+<li><p>The value for “error” is a dictionary, containing “code”, “message”.</p></li>
+<li><p>“code” defines the error category. Currently, it may be “UserError” for bad user inputs and “SystemError” for errors inside the service.</p></li>
+<li><p>“message” is a description of the error. It can be displayed to the end user.</p></li>
+</ul>
+</section>
+<section id="how-to-consume-the-server-sent-events">
+<h2>How to consume the server-sent events<a class="headerlink" href="#how-to-consume-the-server-sent-events" title="Permalink to this heading">#</a></h2>
+<section id="consume-using-python">
+<h3>Consume using Python<a class="headerlink" href="#consume-using-python" title="Permalink to this heading">#</a></h3>
+<p>We have created <a class="reference download internal" download="" href="../_downloads/7193c91aba74c362a9dca3d7d1c6fc5c/event_stream.py"><span class="xref download myst">a utility file</span></a> as an example to demonstrate how to consume the server-sent event. A sample usage would like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="n">content_type</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;text/event-stream&quot;</span> <span class="ow">in</span> <span class="n">content_type</span><span class="p">:</span>
+        <span class="n">event_stream</span> <span class="o">=</span> <span class="n">EventStream</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">iter_lines</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">event_stream</span><span class="p">:</span>
+            <span class="c1"># Handle event, i.e. print to stdout</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Handle json response</span>
+
+<span class="k">except</span> <span class="n">HTTPError</span><span class="p">:</span>
+    <span class="c1"># Handle exceptions</span>
+</pre></div>
+</div>
+</section>
+<section id="consume-using-javascript">
+<h3>Consume using JavaScript<a class="headerlink" href="#consume-using-javascript" title="Permalink to this heading">#</a></h3>
+<p>There are several libraries to consume server-sent events in JavaScript. Here is <a class="reference external" href="https://www.npmjs.com/package/sse.js?activeTab=code">one of them as an example</a>.</p>
+</section>
+</section>
+<section id="a-sample-chat-app-using-python">
+<h2>A sample chat app using Python<a class="headerlink" href="#a-sample-chat-app-using-python" title="Permalink to this heading">#</a></h2>
+<p>Here is a sample chat app written in Python.
+(Click <a class="reference download internal" download="" href="../_downloads/f34f275a158ef1f5a852c0cb32de30f7/chat_app.py"><span class="xref download myst">here</span></a> to view the source code.)</p>
+<p><img alt="chat_app" src="../_images/chat_app.gif" /></p>
+</section>
+<section id="advance-usage-hybrid-stream-and-non-stream-flow-output">
+<h2>Advance usage - hybrid stream and non-stream flow output<a class="headerlink" href="#advance-usage-hybrid-stream-and-non-stream-flow-output" title="Permalink to this heading">#</a></h2>
+<p>Sometimes, you may want to get both stream and non-stream results from a flow output. For example, in the “Chat with Wikipedia” flow, you may want to get not only LLM’s answer, but also the list of URLs that the flow searched. To do this, you need to modify the flow to output a combination of stream LLM’s answer and non-stream URL list.</p>
+<p>In the sample “Chat With Wikipedia” flow, the output is connected to the LLM node <code class="docutils literal notranslate"><span class="pre">augmented_chat</span></code>. To add the URL list to the output, you need to add an output field with the name <code class="docutils literal notranslate"><span class="pre">url</span></code> and the value <code class="docutils literal notranslate"><span class="pre">${get_wiki_url.output}</span></code>.</p>
+<p><img alt="chat_wikipedia_dual_output_center.png" src="../_images/chat_wikipedia_dual_output_center.png" /></p>
+<p>The output of the flow will be a non-stream field as the base and a stream field as the delta. Here is an example of request and response.</p>
+<section id="id1">
+<h3>0. The client sends a message to the server.<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">endpoint</span><span class="o">&gt;.</span><span class="n">inference</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">azure</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">score</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span>
+<span class="n">Authorization</span><span class="p">:</span> <span class="n">Bearer</span> <span class="o">&lt;</span><span class="n">key</span> <span class="ow">or</span> <span class="n">token</span> <span class="n">of</span> <span class="n">your</span> <span class="n">endpoint</span><span class="o">&gt;</span>
+<span class="n">Accept</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">event</span><span class="o">-</span><span class="n">stream</span>
+<span class="p">{</span>
+    <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;When was ChatGPT launched?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;chat_history&quot;</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>1. The server sends back the answer in streaming mode.<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">event</span><span class="o">-</span><span class="n">stream</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">Connection</span><span class="p">:</span> <span class="n">close</span>
+<span class="n">Transfer</span><span class="o">-</span><span class="n">Encoding</span><span class="p">:</span> <span class="n">chunked</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;https://en.wikipedia.org/w/index.php?search=ChatGPT&quot;</span><span class="p">,</span> <span class="s2">&quot;https://en.wikipedia.org/w/index.php?search=GPT-4&quot;</span><span class="p">]}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Chat&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;G&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;PT&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; was&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; launched&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; on&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; November&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;30&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;202&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">}</span>
+
+<span class="o">...</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;PT&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>2. The client sends another chat message, along with the full chat history, to the server.<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">endpoint</span><span class="o">&gt;.</span><span class="n">inference</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">azure</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">score</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span>
+<span class="n">Authorization</span><span class="p">:</span> <span class="n">Bearer</span> <span class="o">&lt;</span><span class="n">key</span> <span class="ow">or</span> <span class="n">token</span> <span class="n">of</span> <span class="n">your</span> <span class="n">endpoint</span><span class="o">&gt;</span>
+<span class="n">Accept</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">event</span><span class="o">-</span><span class="n">stream</span>
+<span class="p">{</span>
+    <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;When did OpenAI announce GPT-4? How long is it between these two milestones?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;chat_history&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;When was ChatGPT launched?&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&quot;https://en.wikipedia.org/w/index.php?search=ChatGPT&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;https://en.wikipedia.org/w/index.php?search=GPT-4&quot;</span>
+                <span class="p">],</span>
+                <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;ChatGPT was launched on November 30, 2022. </span><span class="se">\n\n</span><span class="s2">SOURCES: https://en.wikipedia.org/w/index.php?search=ChatGPT&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>3. The server sends back the answer in streaming mode.<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">event</span><span class="o">-</span><span class="n">stream</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">Connection</span><span class="p">:</span> <span class="n">close</span>
+<span class="n">Transfer</span><span class="o">-</span><span class="n">Encoding</span><span class="p">:</span> <span class="n">chunked</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;https://en.wikipedia.org/w/index.php?search=Generative pre-trained transformer &quot;</span><span class="p">,</span> <span class="s2">&quot;https://en.wikipedia.org/w/index.php?search=Microsoft &quot;</span><span class="p">]}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Open&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;AI&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; released&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; G&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;PT&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; in&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; March&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;202&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; Chat&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;G&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;PT&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; was&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; launched&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; on&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; November&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;30&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;202&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; The&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; time&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; between&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; these&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; two&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; milestones&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; is&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; approximately&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot; months&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;.</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">}</span>
+
+<span class="o">...</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Chat&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;G&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;PT&quot;</span><span class="p">}</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="deploy-a-flow/distribute-flow-as-executable-app.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Distribute flow as executable app</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="manage-connections.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Manage connections</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-streaming-enabled-flow">
+   Create a streaming enabled flow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploy-the-flow-as-an-online-endpoint">
+   Deploy the flow as an online endpoint
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#understand-the-streaming-process">
+   Understand the streaming process
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-client-sends-a-message-to-the-server">
+     0. The client sends a message to the server.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-server-sends-back-the-response-in-streaming-mode">
+     1. The server sends back the response in streaming mode.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-client-sends-another-chat-message-along-with-the-full-chat-history-to-the-server">
+     2. The client sends another chat message, along with the full chat history, to the server.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-server-sends-back-the-answer-in-streaming-mode">
+     3. The server sends back the answer in streaming mode.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-chat-continues-in-a-similar-way">
+     4. The chat continues in a similar way.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handle-errors">
+   Handle errors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-consume-the-server-sent-events">
+   How to consume the server-sent events
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#consume-using-python">
+     Consume using Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#consume-using-javascript">
+     Consume using JavaScript
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-sample-chat-app-using-python">
+   A sample chat app using Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advance-usage-hybrid-stream-and-non-stream-flow-output">
+   Advance usage - hybrid stream and non-stream flow output
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     0. The client sends a message to the server.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     1. The server sends back the answer in streaming mode.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     2. The client sends another chat message, along with the full chat history, to the server.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     3. The server sends back the answer in streaming mode.
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+
+<div class="tocsection editthispage">
+    <a href="https://github.com//microsoft/promptflow/edit/main/docs/how-to-guides/enable-streaming-mode.md">
+        <i class="fa-solid fa-pencil"></i> Edit this page
+    </a>
+</div>
+
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023, Microsoft.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

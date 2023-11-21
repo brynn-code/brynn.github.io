@@ -1,0 +1,981 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Manage runs &#8212; Prompt flow  documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'how-to-guides/manage-runs';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://raw.githubusercontent.com/brynn-code/brynn.github.io/main/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'Python';
+        </script>
+    <script src="../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../_static/logo32.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Set global configs" href="set-global-configs.html" />
+    <link rel="prev" title="Manage connections" href="manage-connections.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Prompt flow">
+    <img src="../_static/logo.svg" class="logo__image only-dark" alt="Prompt flow">
+  
+  
+    <p class="title logo__title">Prompt flow</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class=" navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="develop-a-flow/index.html">Develop a flow</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-flow/develop-standard-flow.html">Develop standard flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-flow/develop-chat-flow.html">Develop chat flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-flow/develop-evaluation-flow.html">Develop evaluation flow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="init-and-test-a-flow.html">Initialize and test a flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add-conditional-control-to-a-flow.html">Add conditional control to a flow</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="run-and-evaluate-a-flow/index.html">Run and evaluate a flow</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="run-and-evaluate-a-flow/use-column-mapping.html">Use column mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tune-prompts-with-variants.html">Tune prompts using variants</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="deploy-a-flow/index.html">Deploy a flow</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="deploy-a-flow/deploy-using-dev-server.html">Deploy a flow using development server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy-a-flow/deploy-using-docker.html">Deploy a flow using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy-a-flow/deploy-using-kubernetes.html">Deploy a flow using Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy-a-flow/distribute-flow-as-executable-app.html">Distribute flow as executable app</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="enable-streaming-mode.html">Use streaming endpoints deployed from prompt flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manage-connections.html">Manage connections</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Manage runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set-global-configs.html">Set global configs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="develop-a-tool/index.html">Develop a tool</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/create-and-use-tool-package.html">Create and Use Tool Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/add-a-tool-icon.html">Adding a Tool Icon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/add-category-and-tags-for-tool.html">Adding Category and Tags for Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/use-file-path-as-tool-input.html">Using File Path as Tool Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/customize_an_llm_tool.html">Customizing an LLM Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/create-cascading-tool-inputs.html">Creating Cascading Tool Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/create-your-own-custom-strong-type-connection.html">Create and Use Your Own Custom Strong Type Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-a-tool/create-dynamic-list-tool-input.html">Creating a Dynamic List Tool Input</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequency asked questions (FAQ)</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="manage-runs">
+<h1>Manage runs<a class="headerlink" href="#manage-runs" title="Permalink to this heading">#</a></h1>
+<div class="admonition-experimental-feature admonition">
+<p class="admonition-title">Experimental feature</p>
+<p>This is an experimental feature, and may change at any time. Learn <a class="reference internal" href="faq.html#stable-vs-experimental"><span class="std std-doc">more</span></a>.</p>
+</div>
+<p>This documentation will walk you through how to manage your runs with CLI, SDK and VS Code Extension.</p>
+<p>In general:</p>
+<ul class="simple">
+<li><p>For <code class="docutils literal notranslate"><span class="pre">CLI</span></code>, you can run <code class="docutils literal notranslate"><span class="pre">pf/pfazure</span> <span class="pre">run</span> <span class="pre">--help</span></code> in terminal to see the help messages.</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">SDK</span></code>, you can refer to <a class="reference internal" href="../reference/python-library-reference/promptflow.html"><span class="doc std std-doc">Promptflow Python Library Reference</span></a> and check <code class="docutils literal notranslate"><span class="pre">PFClient.runs</span></code> for more run operations.</p></li>
+</ul>
+<p>Let’s take a look at the following topics:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#manage-runs"><span class="std std-doc">Manage runs</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#create-a-run"><span class="std std-doc">Create a run</span></a></p></li>
+<li><p><a class="reference internal" href="#get-a-run"><span class="std std-doc">Get a run</span></a></p></li>
+<li><p><a class="reference internal" href="#show-run-details"><span class="std std-doc">Show run details</span></a></p></li>
+<li><p><a class="reference internal" href="#show-run-metrics"><span class="std std-doc">Show run metrics</span></a></p></li>
+<li><p><a class="reference internal" href="#visualize-a-run"><span class="std std-doc">Visualize a run</span></a></p></li>
+<li><p><a class="reference internal" href="#list-runs"><span class="std std-doc">List runs</span></a></p></li>
+<li><p><a class="reference internal" href="#update-a-run"><span class="std std-doc">Update a run</span></a></p></li>
+<li><p><a class="reference internal" href="#archive-a-run"><span class="std std-doc">Archive a run</span></a></p></li>
+<li><p><a class="reference internal" href="#restore-a-run"><span class="std std-doc">Restore a run</span></a></p></li>
+</ul>
+</li>
+</ul>
+<section id="create-a-run">
+<h2>Create a run<a class="headerlink" href="#create-a-run" title="Permalink to this heading">#</a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-0">
+CLI</label><div class="sd-tab-content docutils">
+<p>To create a run against bulk inputs, you can write the following YAML file.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">$schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://azuremlschemas.azureedge.net/promptflow/latest/Run.schema.json</span>
+<span class="nt">flow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../web_classification</span>
+<span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../webClassification1.jsonl</span>
+<span class="nt">column_mapping</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${data.url}&quot;</span>
+<span class="nt">variant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${summarize_text_content.variant_0}</span>
+</pre></div>
+</div>
+<p>To create a run against existing run, you can write the following YAML file.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">$schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://azuremlschemas.azureedge.net/promptflow/latest/Run.schema.json</span>
+<span class="nt">flow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../classification_accuracy_evaluation</span>
+<span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../webClassification1.jsonl</span>
+<span class="nt">column_mapping</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">groundtruth</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${data.answer}&quot;</span>
+<span class="w">   </span><span class="nt">prediction</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${run.outputs.category}&quot;</span>
+<span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;existing-flow-run-name&gt;</span>
+</pre></div>
+</div>
+<p>Reference <a class="reference external" href="https://aka.ms/pf/column-mapping">here</a> for detailed information for column mapping.
+You can find additional information about flow yaml schema in <a class="reference internal" href="../reference/run-yaml-schema-reference.html"><span class="doc std std-doc">Run YAML Schema</span></a>.</p>
+<p>After preparing the yaml file, use the CLI command below to create them:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># create the flow run</span>
+pf<span class="w"> </span>run<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>&lt;path-to-flow-run&gt;<span class="w"> </span>
+
+<span class="c1"># create the flow run and stream output</span>
+pf<span class="w"> </span>run<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>&lt;path-to-flow-run&gt;<span class="w"> </span>--stream
+</pre></div>
+</div>
+<p>The expected result is as follows if the run is created successfully.</p>
+<p><img alt="img" src="../_images/run_create.png" /></p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="SDK" for="sd-tab-item-1">
+SDK</label><div class="sd-tab-content docutils">
+<p>Using SDK, create <code class="docutils literal notranslate"><span class="pre">Run</span></code> object and submit it with <code class="docutils literal notranslate"><span class="pre">PFClient</span></code>. The following code snippet shows how to import the required class and create the run:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">PFClient</span>
+<span class="kn">from</span> <span class="nn">promptflow.entities</span> <span class="kn">import</span> <span class="n">Run</span>
+
+<span class="c1"># Get a pf client to manage runs</span>
+<span class="n">pf</span> <span class="o">=</span> <span class="n">PFClient</span><span class="p">()</span>
+
+<span class="c1"># Initialize an Run object</span>
+<span class="n">run</span> <span class="o">=</span> <span class="n">Run</span><span class="p">(</span> 
+    <span class="n">flow</span><span class="o">=</span><span class="s2">&quot;&lt;path-to-local-flow&gt;&quot;</span><span class="p">,</span>
+    <span class="c1"># run flow against local data or existing run, only one of data &amp; run can be specified. </span>
+    <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&lt;path-to-data&gt;&quot;</span><span class="p">,</span>
+    <span class="n">run</span><span class="o">=</span><span class="s2">&quot;&lt;existing-run-name&gt;&quot;</span><span class="p">,</span>
+    <span class="n">column_mapping</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;$</span><span class="si">{data.url}</span><span class="s2">&quot;</span><span class="p">},</span>
+    <span class="n">variant</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{summarize_text_content.variant_0}</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Create the run</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">runs</span><span class="o">.</span><span class="n">create_or_update</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VS Code Extension" for="sd-tab-item-2">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p>You can click on the actions on the top of the default yaml editor or the visual editor for the flow.dag.yaml files to trigger flow batch runs.</p>
+<p><img alt="img" src="../_images/vscode_batch_run_yaml.png" />
+<img alt="img" src="../_images/vscode_batch_run_visual.png" /></p>
+</div>
+</div>
+</section>
+<section id="get-a-run">
+<h2>Get a run<a class="headerlink" href="#get-a-run" title="Permalink to this heading">#</a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-3">
+CLI</label><div class="sd-tab-content docutils">
+<p>Get a run in CLI with JSON format.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>show<span class="w"> </span>--name<span class="w"> </span>&lt;run-name&gt;
+</pre></div>
+</div>
+<p><img alt="img" src="../_images/run_show.png" /></p>
+</div>
+<input id="sd-tab-item-4" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="SDK" for="sd-tab-item-4">
+SDK</label><div class="sd-tab-content docutils">
+<p>Show run with <code class="docutils literal notranslate"><span class="pre">PFClient</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">PFClient</span>
+<span class="c1"># Get a pf client to manage runs</span>
+<span class="n">pf</span> <span class="o">=</span> <span class="n">PFClient</span><span class="p">()</span>
+<span class="c1"># Get and print the run</span>
+<span class="n">run</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">runs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;run-name&gt;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VSC" for="sd-tab-item-5">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p><img alt="img" src="../_images/vscode_run_detail.png" /></p>
+</div>
+</div>
+</section>
+<section id="show-run-details">
+<h2>Show run details<a class="headerlink" href="#show-run-details" title="Permalink to this heading">#</a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-6">
+CLI</label><div class="sd-tab-content docutils">
+<p>Get run details with TABLE format.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>show<span class="w"> </span>--name<span class="w"> </span>&lt;run-name&gt;
+</pre></div>
+</div>
+<p><img alt="img" src="../_images/run_show_details.png" /></p>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="SDK" for="sd-tab-item-7">
+SDK</label><div class="sd-tab-content docutils">
+<p>Show run details with <code class="docutils literal notranslate"><span class="pre">PFClient</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">PFClient</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
+<span class="c1"># Get a pf client to manage runs</span>
+<span class="n">pf</span> <span class="o">=</span> <span class="n">PFClient</span><span class="p">()</span>
+<span class="c1"># Get and print the run-details</span>
+<span class="n">run_details</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">runs</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;run-name&gt;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">details</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">max_results</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="s2">&quot;keys&quot;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;grid&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-8" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VSC" for="sd-tab-item-8">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p><img alt="img" src="../_images/vscode_run_detail.png" /></p>
+</div>
+</div>
+</section>
+<section id="show-run-metrics">
+<h2>Show run metrics<a class="headerlink" href="#show-run-metrics" title="Permalink to this heading">#</a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-9">
+CLI</label><div class="sd-tab-content docutils">
+<p>Get run metrics with JSON format.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>show-metrics<span class="w"> </span>--name<span class="w"> </span>&lt;run-name&gt;
+</pre></div>
+</div>
+<p><img alt="img" src="../_images/run_show_metrics.png" /></p>
+</div>
+<input id="sd-tab-item-10" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="SDK" for="sd-tab-item-10">
+SDK</label><div class="sd-tab-content docutils">
+<p>Show run metrics with <code class="docutils literal notranslate"><span class="pre">PFClient</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">PFClient</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># Get a pf client to manage runs</span>
+<span class="n">pf</span> <span class="o">=</span> <span class="n">PFClient</span><span class="p">()</span>
+<span class="c1"># Get and print the run-metrics</span>
+<span class="n">run_details</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">runs</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;run-name&gt;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualize-a-run">
+<h2>Visualize a run<a class="headerlink" href="#visualize-a-run" title="Permalink to this heading">#</a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-11">
+CLI</label><div class="sd-tab-content docutils">
+<p>Visualize run in browser.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>visualize<span class="w"> </span>--name<span class="w"> </span>&lt;run-name&gt;
+</pre></div>
+</div>
+<p>A browser will open and display run outputs.</p>
+<p><img alt="img" src="../_images/run_visualize.png" /></p>
+</div>
+<input id="sd-tab-item-12" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="SDK" for="sd-tab-item-12">
+SDK</label><div class="sd-tab-content docutils">
+<p>Visualize run with <code class="docutils literal notranslate"><span class="pre">PFClient</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">PFClient</span>
+
+<span class="c1"># Get a pf client to manage runs</span>
+<span class="n">pf</span> <span class="o">=</span> <span class="n">PFClient</span><span class="p">()</span>
+<span class="c1"># Visualize the run</span>
+<span class="n">client</span><span class="o">.</span><span class="n">runs</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;run-name&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-13" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VSC" for="sd-tab-item-13">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p>On the VS Code primary sidebar &gt; the prompt flow pane, there is a run list. It will list all the runs on your machine. Select one or more items and click the “visualize” button on the top-right to visualize the local runs.</p>
+<p><img alt="img" src="../_images/vscode_run_actions.png" /></p>
+</div>
+</div>
+</section>
+<section id="list-runs">
+<h2>List runs<a class="headerlink" href="#list-runs" title="Permalink to this heading">#</a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-14">
+CLI</label><div class="sd-tab-content docutils">
+<p>List runs with JSON format.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>list
+</pre></div>
+</div>
+<p><img alt="img" src="../_images/run_list.png" /></p>
+</div>
+<input id="sd-tab-item-15" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="SDK" for="sd-tab-item-15">
+SDK</label><div class="sd-tab-content docutils">
+<p>List with <code class="docutils literal notranslate"><span class="pre">PFClient</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">PFClient</span>
+
+<span class="c1"># Get a pf client to manage runs</span>
+<span class="n">pf</span> <span class="o">=</span> <span class="n">PFClient</span><span class="p">()</span>
+<span class="c1"># list runs</span>
+<span class="n">runs</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">runs</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-16" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VSC" for="sd-tab-item-16">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p>On the VS Code primary sidebar &gt; the prompt flow pane, there is a run list. It will list all the runs on your machine. Hover on it to view more details.
+<img alt="img" src="../_images/vscode_list_runs.png" /></p>
+</div>
+</div>
+</section>
+<section id="update-a-run">
+<h2>Update a run<a class="headerlink" href="#update-a-run" title="Permalink to this heading">#</a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-17" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-17">
+CLI</label><div class="sd-tab-content docutils">
+<p>Get run metrics with JSON format.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>update<span class="w"> </span>--name<span class="w"> </span>&lt;run-name&gt;<span class="w"> </span>--set<span class="w"> </span><span class="nv">display_name</span><span class="o">=</span>new_display_name
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-18" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="SDK" for="sd-tab-item-18">
+SDK</label><div class="sd-tab-content docutils">
+<p>Update run with <code class="docutils literal notranslate"><span class="pre">PFClient</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">PFClient</span>
+
+<span class="c1"># Get a pf client to manage runs</span>
+<span class="n">pf</span> <span class="o">=</span> <span class="n">PFClient</span><span class="p">()</span>
+<span class="c1"># Get and print the run-metrics</span>
+<span class="n">run</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">runs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;run-name&gt;&quot;</span><span class="p">,</span> <span class="n">display_name</span><span class="o">=</span><span class="s2">&quot;new_display_name&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="archive-a-run">
+<h2>Archive a run<a class="headerlink" href="#archive-a-run" title="Permalink to this heading">#</a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-19" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-19">
+CLI</label><div class="sd-tab-content docutils">
+<p>Archive the run so it won’t show in run list results.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>archive<span class="w"> </span>--name<span class="w"> </span>&lt;run-name&gt;
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-20" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" data-sync-id="SDK" for="sd-tab-item-20">
+SDK</label><div class="sd-tab-content docutils">
+<p>Archive with <code class="docutils literal notranslate"><span class="pre">PFClient</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">PFClient</span>
+
+<span class="c1"># Get a pf client to manage runs</span>
+<span class="n">pf</span> <span class="o">=</span> <span class="n">PFClient</span><span class="p">()</span>
+<span class="c1"># archive a run</span>
+<span class="n">client</span><span class="o">.</span><span class="n">runs</span><span class="o">.</span><span class="n">archive</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;run-name&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-21" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" data-sync-id="VSC" for="sd-tab-item-21">
+VS Code Extension</label><div class="sd-tab-content docutils">
+<p><img alt="img" src="../_images/vscode_run_actions.png" /></p>
+</div>
+</div>
+</section>
+<section id="restore-a-run">
+<h2>Restore a run<a class="headerlink" href="#restore-a-run" title="Permalink to this heading">#</a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-22" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="CLI" for="sd-tab-item-22">
+CLI</label><div class="sd-tab-content docutils">
+<p>Restore an archived run so it can show in run list results.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pf<span class="w"> </span>run<span class="w"> </span>restore<span class="w"> </span>--name<span class="w"> </span>&lt;run-name&gt;
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-23" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="SDK" for="sd-tab-item-23">
+SDK</label><div class="sd-tab-content docutils">
+<p>Restore with <code class="docutils literal notranslate"><span class="pre">PFClient</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">PFClient</span>
+
+<span class="c1"># Get a pf client to manage runs</span>
+<span class="n">pf</span> <span class="o">=</span> <span class="n">PFClient</span><span class="p">()</span>
+<span class="c1"># restore a run</span>
+<span class="n">client</span><span class="o">.</span><span class="n">runs</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;run-name&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="manage-connections.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Manage connections</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="set-global-configs.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Set global configs</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-run">
+   Create a run
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-a-run">
+   Get a run
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#show-run-details">
+   Show run details
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#show-run-metrics">
+   Show run metrics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualize-a-run">
+   Visualize a run
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#list-runs">
+   List runs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#update-a-run">
+   Update a run
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#archive-a-run">
+   Archive a run
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#restore-a-run">
+   Restore a run
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+
+<div class="tocsection editthispage">
+    <a href="https://github.com//microsoft/promptflow/edit/main/docs/how-to-guides/manage-runs.md">
+        <i class="fa-solid fa-pencil"></i> Edit this page
+    </a>
+</div>
+
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023, Microsoft.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

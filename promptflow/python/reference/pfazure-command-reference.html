@@ -1,0 +1,1150 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>pfazure &#8212; Prompt flow  documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/pfazure-command-reference';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://raw.githubusercontent.com/brynn-code/brynn.github.io/main/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'Python';
+        </script>
+    <script src="../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../_static/logo32.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PLACEHOLDER" href="python-library-reference/promptflow.html" />
+    <link rel="prev" title="pf" href="pf-command-reference.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Prompt flow">
+    <img src="../_static/logo.svg" class="logo__image only-dark" alt="Prompt flow">
+  
+  
+    <p class="title logo__title">Prompt flow</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class=" navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../how-to-guides/quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../how-to-guides/index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../how-to-guides/quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../how-to-guides/index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <p aria-level="2" class="caption" role="heading"><span class="caption-text">Command Line Interface</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pf-command-reference.html">pf</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">pfazure</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Library Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python-library-reference/promptflow.html">PLACEHOLDER</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tool Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/llm-tool.html">LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/prompt-tool.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/python-tool.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/serp-api-tool.html">SerpAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/faiss_index_lookup_tool.html">Faiss Index Lookup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/vector_db_lookup_tool.html">Vector DB Lookup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/embedding_tool.html">Embedding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools-reference/open_source_llm_tool.html">Open Source LLM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">YAML Schema</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="flow-yaml-schema-reference.html">Flow YAML Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run-yaml-schema-reference.html">Run YAML Schema</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="pfazure">
+<h1>pfazure<a class="headerlink" href="#pfazure" title="Permalink to this heading">#</a></h1>
+<div class="admonition-experimental-feature admonition">
+<p class="admonition-title">Experimental feature</p>
+<p>This is an experimental feature, and may change at any time. Learn <a class="reference internal" href="../how-to-guides/faq.html#stable-vs-experimental"><span class="std std-doc">more</span></a>.</p>
+</div>
+<p>Manage prompt flow resources on Azure with the prompt flow CLI.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#pfazure-flow"><span class="std std-doc">pfazure flow</span></a></p></td>
+<td><p>Manage flows.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pfazure-run"><span class="std std-doc">pfazure run</span></a></p></td>
+<td><p>Manage runs.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="pfazure-flow">
+<h2>pfazure flow<a class="headerlink" href="#pfazure-flow" title="Permalink to this heading">#</a></h2>
+<p>Manage flows.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#pfazure-flow-create"><span class="std std-doc">pfazure flow create</span></a></p></td>
+<td><p>Create a flow.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pfazure-flow-list"><span class="std std-doc">pfazure flow list</span></a></p></td>
+<td><p>List flows in a workspace.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="pfazure-flow-create">
+<h3>pfazure flow create<a class="headerlink" href="#pfazure-flow-create" title="Permalink to this heading">#</a></h3>
+<p>Create a flow in Azure AI from a local flow folder.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pfazure<span class="w"> </span>flow<span class="w"> </span>create<span class="w"> </span><span class="o">[</span>--flow<span class="o">]</span>
+<span class="w">                    </span><span class="o">[</span>--set<span class="o">]</span>
+<span class="w">                    </span><span class="o">[</span>--subscription<span class="o">]</span>
+<span class="w">                    </span><span class="o">[</span>--resource-group<span class="o">]</span>
+<span class="w">                    </span><span class="o">[</span>--workspace-name<span class="o">]</span>
+</pre></div>
+</div>
+<section id="parameters">
+<h4>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--flow</span></code></p>
+<p>Local path to the flow directory.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--set</span></code></p>
+<p>Update an object by specifying a property path and value to set.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">display-name</span></code>: Flow display name that will be created in remote. Default to be flow folder name + timestamp if not specified.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: Flow type. Default to be “standard” if not specified. Available types are: “standard”, “evaluation”, “chat”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">description</span></code>: Flow description. e.g. “–set description=&lt;description&gt;.”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tags</span></code>: Flow tags. e.g. “–set tags.key1=value1 tags.key2=value2.”</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">--subscription</span></code></p>
+<p>Subscription id, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--resource-group</span> <span class="pre">-g</span></code></p>
+<p>Resource group name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--workspace-name</span> <span class="pre">-w</span></code></p>
+<p>Workspace name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+</section>
+</section>
+<section id="pfazure-flow-list">
+<h3>pfazure flow list<a class="headerlink" href="#pfazure-flow-list" title="Permalink to this heading">#</a></h3>
+<p>List remote flows on Azure AI.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pfazure<span class="w"> </span>flow<span class="w"> </span>list<span class="w"> </span><span class="o">[</span>--max-results<span class="o">]</span>
+<span class="w">                  </span><span class="o">[</span>--include-others<span class="o">]</span>
+<span class="w">                  </span><span class="o">[</span>--type<span class="o">]</span>
+<span class="w">                  </span><span class="o">[</span>--output<span class="o">]</span>
+<span class="w">                  </span><span class="o">[</span>--archived-only<span class="o">]</span>
+<span class="w">                  </span><span class="o">[</span>--include-archived<span class="o">]</span>
+<span class="w">                  </span><span class="o">[</span>--subscription<span class="o">]</span>
+<span class="w">                  </span><span class="o">[</span>--resource-group<span class="o">]</span>
+<span class="w">                  </span><span class="o">[</span>--workspace-name<span class="o">]</span>
+<span class="w">                  </span><span class="o">[</span>--output<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id1">
+<h4>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--max-results</span> <span class="pre">-r</span></code></p>
+<p>Max number of results to return. Default is 50, upper bound is 100.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--include-others</span></code></p>
+<p>Include flows created by other owners. By default only flows created by the current user are returned.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--type</span></code></p>
+<p>Filter flows by type. Available types are: “standard”, “evaluation”, “chat”.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--archived-only</span></code></p>
+<p>List archived flows only.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--include-archived</span></code></p>
+<p>List archived flows and active flows.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--output</span> <span class="pre">-o</span></code></p>
+<p>Output format. Allowed values: <code class="docutils literal notranslate"><span class="pre">json</span></code>, <code class="docutils literal notranslate"><span class="pre">table</span></code>. Default: <code class="docutils literal notranslate"><span class="pre">json</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--subscription</span></code></p>
+<p>Subscription id, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--resource-group</span> <span class="pre">-g</span></code></p>
+<p>Resource group name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--workspace-name</span> <span class="pre">-w</span></code></p>
+<p>Workspace name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+</section>
+</section>
+</section>
+<section id="pfazure-run">
+<h2>pfazure run<a class="headerlink" href="#pfazure-run" title="Permalink to this heading">#</a></h2>
+<p>Manage prompt flow runs.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#pfazure-run-create"><span class="std std-doc">pfazure run create</span></a></p></td>
+<td><p>Create a run.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pfazure-run-list"><span class="std std-doc">pfazure run list</span></a></p></td>
+<td><p>List runs in a workspace.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pfazure-run-show"><span class="std std-doc">pfazure run show</span></a></p></td>
+<td><p>Show details for a run.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pfazure-run-stream"><span class="std std-doc">pfazure run stream</span></a></p></td>
+<td><p>Stream run logs to the console.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pfazure-run-show-details"><span class="std std-doc">pfazure run show-details</span></a></p></td>
+<td><p>Show a run details.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pfazure-run-show-metrics"><span class="std std-doc">pfazure run show-metrics</span></a></p></td>
+<td><p>Show run metrics.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pfazure-run-visualize"><span class="std std-doc">pfazure run visualize</span></a></p></td>
+<td><p>Visualize a run.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pfazure-run-archive"><span class="std std-doc">pfazure run archive</span></a></p></td>
+<td><p>Archive a run.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pfazure-run-restore"><span class="std std-doc">pfazure run restore</span></a></p></td>
+<td><p>Restore a run.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pfazure-run-update"><span class="std std-doc">pfazure run update</span></a></p></td>
+<td><p>Update a run.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="pfazure-run-create">
+<h3>pfazure run create<a class="headerlink" href="#pfazure-run-create" title="Permalink to this heading">#</a></h3>
+<p>Create a run.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pfazure<span class="w"> </span>run<span class="w"> </span>create<span class="w"> </span><span class="o">[</span>--file<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--flow<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--data<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--column-mapping<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--run<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--variant<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--stream<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--environment-variables<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--connections<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--set<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--subscription<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--resource-group<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--workspace-name<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id2">
+<h4>Parameters<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--file</span> <span class="pre">-f</span></code></p>
+<p>Local path to the YAML file containing the prompt flow run specification; can be overwritten by other parameters. Reference <a class="reference external" href="https://azuremlschemas.azureedge.net/promptflow/latest/Run.schema.json">here</a> for YAML schema.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--flow</span></code></p>
+<p>Local path to the flow directory.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--data</span></code></p>
+<p>Local path to the data file or remote data. e.g. azureml:name:version.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--column-mapping</span></code></p>
+<p>Inputs column mapping, use <code class="docutils literal notranslate"><span class="pre">${data.xx}</span></code> to refer to data columns, use <code class="docutils literal notranslate"><span class="pre">${run.inputs.xx}</span></code> to refer to referenced run’s data columns, and <code class="docutils literal notranslate"><span class="pre">${run.outputs.xx}</span></code> to refer to run outputs columns.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--run</span></code></p>
+<p>Referenced flow run name. For example, you can run an evaluation flow against an existing run. For example, “pfazure run create –flow evaluation_flow_dir –run existing_bulk_run –column-mapping url=’${data.url}’”.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--variant</span></code></p>
+<p>Node &amp; variant name in format of <code class="docutils literal notranslate"><span class="pre">${node_name.variant_name}</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--stream</span> <span class="pre">-s</span></code></p>
+<p>Indicates whether to stream the run’s logs to the console.<br />
+default value: False</p>
+<p><code class="docutils literal notranslate"><span class="pre">--environment-variables</span></code></p>
+<p>Environment variables to set by specifying a property path and value. Example:
+<code class="docutils literal notranslate"><span class="pre">--environment-variable</span> <span class="pre">key1='${my_connection.api_key}'</span> <span class="pre">key2='value2'</span></code>. The value reference
+to connection keys will be resolved to the actual value, and all environment variables
+specified will be set into os.environ.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--connections</span></code></p>
+<p>Overwrite node level connections with provided value.
+Example: <code class="docutils literal notranslate"><span class="pre">--connections</span> <span class="pre">node1.connection=test_llm_connection</span> <span class="pre">node1.deployment_name=gpt-35-turbo</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">--set</span></code></p>
+<p>Update an object by specifying a property path and value to set.
+Example: <code class="docutils literal notranslate"><span class="pre">--set</span> <span class="pre">property1.property2=&lt;value&gt;</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--subscription</span></code></p>
+<p>Subscription id, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--resource-group</span> <span class="pre">-g</span></code></p>
+<p>Resource group name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--workspace-name</span> <span class="pre">-w</span></code></p>
+<p>Workspace name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+</section>
+</section>
+<section id="pfazure-run-list">
+<h3>pfazure run list<a class="headerlink" href="#pfazure-run-list" title="Permalink to this heading">#</a></h3>
+<p>List runs in a workspace.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pfazure<span class="w"> </span>run<span class="w"> </span>list<span class="w"> </span><span class="o">[</span>--archived-only<span class="o">]</span>
+<span class="w">                 </span><span class="o">[</span>--include-archived<span class="o">]</span>
+<span class="w">                 </span><span class="o">[</span>--max-results<span class="o">]</span>
+<span class="w">                 </span><span class="o">[</span>--subscription<span class="o">]</span>
+<span class="w">                 </span><span class="o">[</span>--resource-group<span class="o">]</span>
+<span class="w">                 </span><span class="o">[</span>--workspace-name<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id3">
+<h4>Parameters<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--archived-only</span></code></p>
+<p>List archived runs only.<br />
+default value: False</p>
+<p><code class="docutils literal notranslate"><span class="pre">--include-archived</span></code></p>
+<p>List archived runs and active runs.<br />
+default value: False</p>
+<p><code class="docutils literal notranslate"><span class="pre">--max-results</span> <span class="pre">-r</span></code></p>
+<p>Max number of results to return. Default is 50, upper bound is 100.<br />
+default value: 50</p>
+<p><code class="docutils literal notranslate"><span class="pre">--subscription</span></code></p>
+<p>Subscription id, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--resource-group</span> <span class="pre">-g</span></code></p>
+<p>Resource group name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--workspace-name</span> <span class="pre">-w</span></code></p>
+<p>Workspace name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+</section>
+</section>
+<section id="pfazure-run-show">
+<h3>pfazure run show<a class="headerlink" href="#pfazure-run-show" title="Permalink to this heading">#</a></h3>
+<p>Show details for a run.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pfazure<span class="w"> </span>run<span class="w"> </span>show<span class="w"> </span>--name
+<span class="w">                 </span><span class="o">[</span>--subscription<span class="o">]</span>
+<span class="w">                 </span><span class="o">[</span>--resource-group<span class="o">]</span>
+<span class="w">                 </span><span class="o">[</span>--workspace-name<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id4">
+<h4>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--subscription</span></code></p>
+<p>Subscription id, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--resource-group</span> <span class="pre">-g</span></code></p>
+<p>Resource group name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--workspace-name</span> <span class="pre">-w</span></code></p>
+<p>Workspace name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+</section>
+</section>
+<section id="pfazure-run-stream">
+<h3>pfazure run stream<a class="headerlink" href="#pfazure-run-stream" title="Permalink to this heading">#</a></h3>
+<p>Stream run logs to the console.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pfazure<span class="w"> </span>run<span class="w"> </span>stream<span class="w"> </span>--name
+<span class="w">                   </span><span class="o">[</span>--subscription<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--resource-group<span class="o">]</span>
+<span class="w">                   </span><span class="o">[</span>--workspace-name<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id5">
+<h4>Parameters<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--subscription</span></code></p>
+<p>Subscription id, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--resource-group</span> <span class="pre">-g</span></code></p>
+<p>Resource group name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--workspace-name</span> <span class="pre">-w</span></code></p>
+<p>Workspace name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+</section>
+</section>
+<section id="pfazure-run-show-details">
+<h3>pfazure run show-details<a class="headerlink" href="#pfazure-run-show-details" title="Permalink to this heading">#</a></h3>
+<p>Show a run details.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pfazure<span class="w"> </span>run<span class="w"> </span>show-details<span class="w"> </span>--name
+<span class="w">                         </span><span class="o">[</span>--subscription<span class="o">]</span>
+<span class="w">                         </span><span class="o">[</span>--resource-group<span class="o">]</span>
+<span class="w">                         </span><span class="o">[</span>--workspace-name<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id6">
+<h4>Parameters<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--subscription</span></code></p>
+<p>Subscription id, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--resource-group</span> <span class="pre">-g</span></code></p>
+<p>Resource group name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--workspace-name</span> <span class="pre">-w</span></code></p>
+<p>Workspace name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+</section>
+</section>
+<section id="pfazure-run-show-metrics">
+<h3>pfazure run show-metrics<a class="headerlink" href="#pfazure-run-show-metrics" title="Permalink to this heading">#</a></h3>
+<p>Show run metrics.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pfazure<span class="w"> </span>run<span class="w"> </span>show-metrics<span class="w"> </span>--name
+<span class="w">                         </span><span class="o">[</span>--subscription<span class="o">]</span>
+<span class="w">                         </span><span class="o">[</span>--resource-group<span class="o">]</span>
+<span class="w">                         </span><span class="o">[</span>--workspace-name<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id7">
+<h4>Parameters<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--subscription</span></code></p>
+<p>Subscription id, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--resource-group</span> <span class="pre">-g</span></code></p>
+<p>Resource group name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--workspace-name</span> <span class="pre">-w</span></code></p>
+<p>Workspace name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+</section>
+</section>
+<section id="pfazure-run-visualize">
+<h3>pfazure run visualize<a class="headerlink" href="#pfazure-run-visualize" title="Permalink to this heading">#</a></h3>
+<p>Visualize a run.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pfazure<span class="w"> </span>run<span class="w"> </span>visualize<span class="w"> </span>--name
+<span class="w">                      </span><span class="o">[</span>--subscription<span class="o">]</span>
+<span class="w">                      </span><span class="o">[</span>--resource-group<span class="o">]</span>
+<span class="w">                      </span><span class="o">[</span>--workspace-name<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id8">
+<h4>Parameters<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--subscription</span></code></p>
+<p>Subscription id, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--resource-group</span> <span class="pre">-g</span></code></p>
+<p>Resource group name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--workspace-name</span> <span class="pre">-w</span></code></p>
+<p>Workspace name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+</section>
+</section>
+<section id="pfazure-run-archive">
+<h3>pfazure run archive<a class="headerlink" href="#pfazure-run-archive" title="Permalink to this heading">#</a></h3>
+<p>Archive a run.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pfazure<span class="w"> </span>run<span class="w"> </span>archive<span class="w"> </span>--name
+<span class="w">                    </span><span class="o">[</span>--subscription<span class="o">]</span>
+<span class="w">                    </span><span class="o">[</span>--resource-group<span class="o">]</span>
+<span class="w">                    </span><span class="o">[</span>--workspace-name<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id9">
+<h4>Parameters<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--subscription</span></code></p>
+<p>Subscription id, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--resource-group</span> <span class="pre">-g</span></code></p>
+<p>Resource group name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--workspace-name</span> <span class="pre">-w</span></code></p>
+<p>Workspace name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+</section>
+</section>
+<section id="pfazure-run-restore">
+<h3>pfazure run restore<a class="headerlink" href="#pfazure-run-restore" title="Permalink to this heading">#</a></h3>
+<p>Restore a run.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pfazure<span class="w"> </span>run<span class="w"> </span>restore<span class="w"> </span>--name
+<span class="w">                    </span><span class="o">[</span>--subscription<span class="o">]</span>
+<span class="w">                    </span><span class="o">[</span>--resource-group<span class="o">]</span>
+<span class="w">                    </span><span class="o">[</span>--workspace-name<span class="o">]</span>
+</pre></div>
+</div>
+<section id="id10">
+<h4>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--subscription</span></code></p>
+<p>Subscription id, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--resource-group</span> <span class="pre">-g</span></code></p>
+<p>Resource group name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--workspace-name</span> <span class="pre">-w</span></code></p>
+<p>Workspace name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+</section>
+</section>
+<section id="pfazure-run-update">
+<h3>pfazure run update<a class="headerlink" href="#pfazure-run-update" title="Permalink to this heading">#</a></h3>
+<p>Update a run’s metadata, such as <code class="docutils literal notranslate"><span class="pre">display</span> <span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">tags</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pfazure<span class="w"> </span>run<span class="w"> </span>update<span class="w"> </span>--name
+<span class="w">                    </span><span class="o">[</span>--set<span class="w"> </span><span class="nv">display_name</span><span class="o">=</span><span class="s2">&quot;&lt;value&gt;&quot;</span><span class="w"> </span><span class="nv">description</span><span class="o">=</span><span class="s2">&quot;&lt;value&gt;&quot;</span><span class="w"> </span>tags.key<span class="o">=</span><span class="s2">&quot;&lt;value&gt;&quot;</span><span class="o">]</span>
+<span class="w">                    </span><span class="o">[</span>--subscription<span class="o">]</span>
+<span class="w">                    </span><span class="o">[</span>--resource-group<span class="o">]</span>
+<span class="w">                    </span><span class="o">[</span>--workspace-name<span class="o">]</span>
+</pre></div>
+</div>
+<section id="examples">
+<h4>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h4>
+<p>Set <code class="docutils literal notranslate"><span class="pre">display</span> <span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">tags</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pfazure<span class="w"> </span>run<span class="w"> </span>update<span class="w"> </span>--name<span class="w"> </span>&lt;run_name&gt;<span class="w"> </span>--set<span class="w"> </span><span class="nv">display_name</span><span class="o">=</span><span class="s2">&quot;&lt;value&gt;&quot;</span><span class="w"> </span><span class="nv">description</span><span class="o">=</span><span class="s2">&quot;&lt;value&gt;&quot;</span><span class="w"> </span>tags.key<span class="o">=</span><span class="s2">&quot;&lt;value&gt;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h4>Parameters<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">-n</span></code></p>
+<p>Name of the run.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--set</span></code></p>
+<p>Set meta information of the run, like <code class="docutils literal notranslate"><span class="pre">display_name</span></code>, <code class="docutils literal notranslate"><span class="pre">description</span></code> or <code class="docutils literal notranslate"><span class="pre">tags</span></code>. Example: –set <key>=<value>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--subscription</span></code></p>
+<p>Subscription id, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--resource-group</span> <span class="pre">-g</span></code></p>
+<p>Resource group name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--workspace-name</span> <span class="pre">-w</span></code></p>
+<p>Workspace name, required when there is no default value from <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">configure</span></code>.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="pf-command-reference.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">pf</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="python-library-reference/promptflow.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">PLACEHOLDER</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pfazure-flow">
+   pfazure flow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pfazure-flow-create">
+     pfazure flow create
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#parameters">
+       Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pfazure-flow-list">
+     pfazure flow list
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pfazure-run">
+   pfazure run
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pfazure-run-create">
+     pfazure run create
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pfazure-run-list">
+     pfazure run list
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pfazure-run-show">
+     pfazure run show
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pfazure-run-stream">
+     pfazure run stream
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pfazure-run-show-details">
+     pfazure run show-details
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pfazure-run-show-metrics">
+     pfazure run show-metrics
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pfazure-run-visualize">
+     pfazure run visualize
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pfazure-run-archive">
+     pfazure run archive
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pfazure-run-restore">
+     pfazure run restore
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pfazure-run-update">
+     pfazure run update
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#examples">
+       Examples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       Parameters
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+
+<div class="tocsection editthispage">
+    <a href="https://github.com//microsoft/promptflow/edit/main/docs/reference/pfazure-command-reference.md">
+        <i class="fa-solid fa-pencil"></i> Edit this page
+    </a>
+</div>
+
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023, Microsoft.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

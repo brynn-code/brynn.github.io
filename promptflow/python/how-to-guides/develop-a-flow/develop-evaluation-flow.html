@@ -1,0 +1,765 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Develop evaluation flow &#8212; Prompt flow  documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'how-to-guides/develop-a-flow/develop-evaluation-flow';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://raw.githubusercontent.com/brynn-code/brynn.github.io/main/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'Python';
+        </script>
+    <script src="../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../_static/logo32.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Initialize and test a flow" href="../init-and-test-a-flow.html" />
+    <link rel="prev" title="Develop chat flow" href="develop-chat-flow.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Prompt flow">
+    <img src="../../_static/logo.svg" class="logo__image only-dark" alt="Prompt flow">
+  
+  
+    <p class="title logo__title">Prompt flow</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class=" navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Develop a flow</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="develop-standard-flow.html">Develop standard flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="develop-chat-flow.html">Develop chat flow</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Develop evaluation flow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../init-and-test-a-flow.html">Initialize and test a flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../add-conditional-control-to-a-flow.html">Add conditional control to a flow</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../run-and-evaluate-a-flow/index.html">Run and evaluate a flow</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../run-and-evaluate-a-flow/use-column-mapping.html">Use column mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tune-prompts-with-variants.html">Tune prompts using variants</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deploy-a-flow/index.html">Deploy a flow</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deploy-a-flow/deploy-using-dev-server.html">Deploy a flow using development server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy-a-flow/deploy-using-docker.html">Deploy a flow using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy-a-flow/deploy-using-kubernetes.html">Deploy a flow using Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy-a-flow/distribute-flow-as-executable-app.html">Distribute flow as executable app</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../enable-streaming-mode.html">Use streaming endpoints deployed from prompt flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage-connections.html">Manage connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage-runs.html">Manage runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../set-global-configs.html">Set global configs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../develop-a-tool/index.html">Develop a tool</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/create-and-use-tool-package.html">Create and Use Tool Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/add-a-tool-icon.html">Adding a Tool Icon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/add-category-and-tags-for-tool.html">Adding Category and Tags for Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/use-file-path-as-tool-input.html">Using File Path as Tool Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/customize_an_llm_tool.html">Customizing an LLM Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/create-cascading-tool-inputs.html">Creating Cascading Tool Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/create-your-own-custom-strong-type-connection.html">Create and Use Your Own Custom Strong Type Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop-a-tool/create-dynamic-list-tool-input.html">Creating a Dynamic List Tool Input</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequency asked questions (FAQ)</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="develop-evaluation-flow">
+<h1>Develop evaluation flow<a class="headerlink" href="#develop-evaluation-flow" title="Permalink to this heading">#</a></h1>
+<div class="admonition-experimental-feature admonition">
+<p class="admonition-title">Experimental feature</p>
+<p>This is an experimental feature, and may change at any time. Learn <a class="reference internal" href="../faq.html#stable-vs-experimental"><span class="std std-doc">more</span></a>.</p>
+</div>
+<p>The evaluation flow is a flow to test/evaluate the quality of your LLM application (standard/chat flow). It usually runs on the outputs of standard/chat flow, and compute key metrics that can be used to determine whether the standard/chat flow performs well. See <a class="reference internal" href="../../concepts/concept-flows.html"><span class="doc std std-doc">Flows</span></a> for more information.</p>
+<p>Before proceeding with this document, it is important to have a good understanding of the standard flow. Please make sure you have read <a class="reference internal" href="develop-standard-flow.html"><span class="doc std std-doc">Develop standard flow</span></a>, since they share many common features and these features won’t be repeated in this doc, such as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Inputs/Outputs</span> <span class="pre">definition</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Nodes</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Chain</span> <span class="pre">nodes</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">flow</span></code></p></li>
+</ul>
+<p>While the evaluation flow shares similarities with the standard flow, there are some important differences that set it apart. The main distinctions are as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Inputs</span> <span class="pre">from</span> <span class="pre">an</span> <span class="pre">existing</span> <span class="pre">run</span></code>: The evaluation flow contains inputs that are derived from the outputs of the standard/chat flow. These inputs are used for evaluation purposes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Aggregation</span> <span class="pre">node</span></code>: The evaluation flow contains one or more aggregation nodes, where the actual evaluation takes place. These nodes are responsible for computing metrics and determining the performance of the standard/chat flow.</p></li>
+</ul>
+<section id="evaluation-flow-example">
+<h2>Evaluation flow example<a class="headerlink" href="#evaluation-flow-example" title="Permalink to this heading">#</a></h2>
+<p>In this guide, we use <a class="reference external" href="https://github.com/microsoft/promptflow/tree/main/examples/flows/evaluation/eval-classification-accuracy">eval-classification-accuracy</a> flow as an example of the evaluation flow. This is a flow illustrating how to evaluate the performance of a classification flow. It involves comparing each prediction to the groundtruth and assigns a <code class="docutils literal notranslate"><span class="pre">Correct</span></code> or <code class="docutils literal notranslate"><span class="pre">Incorrect</span></code> grade, and aggregating the results to produce metrics such as <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>, which reflects how good the system is at classifying the data.</p>
+</section>
+<section id="flow-inputs">
+<h2>Flow inputs<a class="headerlink" href="#flow-inputs" title="Permalink to this heading">#</a></h2>
+<p>The flow <code class="docutils literal notranslate"><span class="pre">eval-classification-accuracy</span></code> contains two inputs:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">groundtruth</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Groundtruth of the original question, it&#39;s the correct label that you hope your standard flow could predict.</span>
+<span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">APP</span>
+<span class="w">  </span><span class="nt">prediction</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The actual predicted outputs that your flow produces.</span>
+<span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">APP</span>
+</pre></div>
+</div>
+<p>As evident from the inputs description, the evaluation flow requires two specific inputs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">groundtruth</span></code>: This input represents the actual or expected values against which the performance of the standard/chat flow will be evaluated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prediction</span></code>: The prediction input is derived from the outputs of another standard/chat flow. It contains the predicted values generated by the standard/chat flow, which will be compared to the groundtruth values during the evaluation process.</p></li>
+</ul>
+<p>From the definition perspective, there is no difference compared with adding an input/output in a <code class="docutils literal notranslate"><span class="pre">standard/chat</span> <span class="pre">flow</span></code>. However when running an evaluation flow, you may need to specify the data source from both data file and flow run outputs. For more details please refer to <a class="reference internal" href="../run-and-evaluate-a-flow/index.html#evaluate-your-flow"><span class="std std-doc">Run and evaluate a flow</span></a>.</p>
+</section>
+<section id="aggregation-node">
+<h2>Aggregation node<a class="headerlink" href="#aggregation-node" title="Permalink to this heading">#</a></h2>
+<p>Before introducing the aggregation node, let’s see what a regular node looks like, we use node <code class="docutils literal notranslate"><span class="pre">grade</span></code> in the example flow for instance:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grade</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">code</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grade.py</span>
+<span class="w">  </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">groundtruth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${inputs.groundtruth}</span>
+<span class="w">    </span><span class="nt">prediction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${inputs.prediction}</span>
+</pre></div>
+</div>
+<p>It takes both <code class="docutils literal notranslate"><span class="pre">groundtruth</span></code> and <code class="docutils literal notranslate"><span class="pre">prediction</span></code> from the flow inputs, compare them in the source code to see if they match:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">tool</span>
+
+<span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">grade</span><span class="p">(</span><span class="n">groundtruth</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prediction</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;Correct&quot;</span> <span class="k">if</span> <span class="n">groundtruth</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">prediction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;Incorrect&quot;</span>
+</pre></div>
+</div>
+<p>When it comes to an <code class="docutils literal notranslate"><span class="pre">aggregation</span> <span class="pre">node</span></code>, there are two key distinctions that set it apart from a regular node:</p>
+<ol class="arabic simple">
+<li><p>It has an attribute <code class="docutils literal notranslate"><span class="pre">aggregation</span></code> set to be <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+</ol>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calculate_accuracy</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">code</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calculate_accuracy.py</span>
+<span class="w">  </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">grades</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${grade.output}</span>
+<span class="w">  </span><span class="nt">aggregation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">  </span><span class="c1"># Add this attribute to make it an aggregation node</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Its source code accepts a <code class="docutils literal notranslate"><span class="pre">List</span></code> type parameter which is a collection of the previous regular node’s outputs.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">log_metric</span><span class="p">,</span> <span class="n">tool</span>
+
+<span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">calculate_accuracy</span><span class="p">(</span><span class="n">grades</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grades</span><span class="p">)):</span>
+        <span class="n">grade</span> <span class="o">=</span> <span class="n">grades</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span>
+
+    <span class="c1"># calculate accuracy for each variant</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="n">result</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;Correct&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">grades</span></code> in above function, contains all results that are produced by the regular node <code class="docutils literal notranslate"><span class="pre">grade</span></code>. Assuming the referred standard flow run has 3 outputs:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;prediction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;App&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;prediction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Channel&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;prediction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Academic&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>And we provides a data file like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;groundtruth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;App&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;groundtruth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Channel&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;groundtruth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wiki&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Then the <code class="docutils literal notranslate"><span class="pre">grades</span></code> value would be <code class="docutils literal notranslate"><span class="pre">[&quot;Correct&quot;,</span> <span class="pre">&quot;Correct&quot;,</span> <span class="pre">&quot;Incorrect&quot;]</span></code>, and the final accuracy is <code class="docutils literal notranslate"><span class="pre">0.67</span></code>.</p>
+<p>This example provides a straightforward demonstration of how to evaluate the classification flow. Once you have a solid understanding of the evaluation mechanism, you can customize and design your own evaluation method to suit your specific needs.</p>
+<section id="more-about-the-list-parameter">
+<h3>More about the list parameter<a class="headerlink" href="#more-about-the-list-parameter" title="Permalink to this heading">#</a></h3>
+<p>What if the number of referred standard flow run outputs does not match the provided data file? We know that a standard flow can be executed against multiple line data and some of them could fail while others succeed. Consider the same standard flow run mentioned in above example but the <code class="docutils literal notranslate"><span class="pre">2nd</span></code> line run has failed, thus we have below run outputs:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;prediction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;App&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;prediction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Academic&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The promptflow flow executor has the capability to recognize the index of the referred run’s outputs and extract the corresponding data from the provided data file. This means that during the execution process, even if the same data file is provided(3 lines), only the specific data mentioned below will be processed:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;groundtruth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;App&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;groundtruth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wiki&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>In this case, the <code class="docutils literal notranslate"><span class="pre">grades</span></code> value would be <code class="docutils literal notranslate"><span class="pre">[&quot;Correct&quot;,</span> <span class="pre">&quot;Incorrect&quot;]</span></code> and the accuracy is <code class="docutils literal notranslate"><span class="pre">0.5</span></code>.</p>
+</section>
+<section id="how-to-set-aggregation-node-in-vs-code-extention">
+<h3>How to set aggregation node in VS Code Extention<a class="headerlink" href="#how-to-set-aggregation-node-in-vs-code-extention" title="Permalink to this heading">#</a></h3>
+<p><img alt="img" src="../../_images/set_aggregation_node_in_vscode.png" /></p>
+</section>
+</section>
+<section id="how-to-log-metrics">
+<h2>How to log metrics<a class="headerlink" href="#how-to-log-metrics" title="Permalink to this heading">#</a></h2>
+<p>Promptflow supports logging and tracking experiments using <code class="docutils literal notranslate"><span class="pre">log_metric</span></code> function. A metric is a key-value pair that records a single float measure. In a python node, you can log a metric with below code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">log_metric</span><span class="p">,</span> <span class="n">tool</span>
+
+<span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">example_log_metrics</span><span class="p">():</span>
+  <span class="n">metric_key</span> <span class="o">=</span> <span class="s2">&quot;accuracy&quot;</span>
+  <span class="n">metric_value</span> <span class="o">=</span> <span class="mf">1.0</span>
+  <span class="n">log_metric</span><span class="p">(</span><span class="n">metric_key</span><span class="p">,</span> <span class="n">metric_value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the run is completed, you can run <code class="docutils literal notranslate"><span class="pre">pf</span> <span class="pre">run</span> <span class="pre">show-metrics</span> <span class="pre">-n</span> <span class="pre">&lt;run_name&gt;</span></code> to see the metrics.</p>
+<p><img alt="img" src="../../_images/run_show_metrics.png" /></p>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="develop-chat-flow.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Develop chat flow</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../init-and-test-a-flow.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Initialize and test a flow</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation-flow-example">
+   Evaluation flow example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flow-inputs">
+   Flow inputs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aggregation-node">
+   Aggregation node
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#more-about-the-list-parameter">
+     More about the list parameter
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-set-aggregation-node-in-vs-code-extention">
+     How to set aggregation node in VS Code Extention
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-log-metrics">
+   How to log metrics
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+
+<div class="tocsection editthispage">
+    <a href="https://github.com//microsoft/promptflow/edit/main/docs/how-to-guides/develop-a-flow/develop-evaluation-flow.md">
+        <i class="fa-solid fa-pencil"></i> Edit this page
+    </a>
+</div>
+
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023, Microsoft.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

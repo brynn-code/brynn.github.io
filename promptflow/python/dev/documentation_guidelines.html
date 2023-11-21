@@ -1,0 +1,750 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Promptflow Reference Documentation Guide &#8212; Prompt flow  documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1e1de1a1873e13ef5536" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev/documentation_guidelines';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://raw.githubusercontent.com/brynn-code/brynn.github.io/main/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'Python';
+        </script>
+    <script src="../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../_static/logo32.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Prompt flow">
+    <img src="../_static/logo.svg" class="logo__image only-dark" alt="Prompt flow">
+  
+  
+    <p class="title logo__title">Prompt flow</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class=" navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../how-to-guides/quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../how-to-guides/index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        Python  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../how-to-guides/quick-start.html">
+                        Quick Start
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../how-to-guides/index.html">
+                        How-to Guides
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../tutorials/index.html">
+                        Tutorials
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../concepts/index.html">
+                        Concepts
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        Reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../cloud/index.html">
+                        Cloud
+                    </a>
+                </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="../integrations/index.html">
+                        Integrations
+                    </a>
+                </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" data-toggle="tooltip">
+    <a class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="fa-regular fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/microsoft/promptflow" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/promptflow/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-solid fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="promptflow-reference-documentation-guide">
+<h1>Promptflow Reference Documentation Guide<a class="headerlink" href="#promptflow-reference-documentation-guide" title="Permalink to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>This guide describes how to author Python docstrings for promptflow public interfaces. See our doc site at <a class="reference external" href="https://microsoft.github.io/promptflow/reference/python-library-reference/promptflow.html">Promptflow API reference documentation</a>.</p>
+</section>
+<section id="principles">
+<h2>Principles<a class="headerlink" href="#principles" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Coverage</strong>: Every public object must have a docstring. For private objects, docstrings are encouraged but not required.</p></li>
+<li><p><strong>Style</strong>: All docstrings should be written in <a class="reference external" href="https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format">Sphinx style</a> noting all types and if any exceptions are raised.</p></li>
+<li><p><strong>Relevance</strong>: The documentation is up-to-date and relevant to the current version of the product.</p></li>
+<li><p><strong>Clarity</strong>: The documentation is written in clear, concise language that is easy to understand.</p></li>
+<li><p><strong>Consistency</strong>: The documentation has a consistent format and structure, making it easy to navigate and follow.</p></li>
+</ul>
+</section>
+<section id="how-to-write-the-docstring">
+<h2>How to write the docstring<a class="headerlink" href="#how-to-write-the-docstring" title="Permalink to this heading">#</a></h2>
+<p>First please read through <a class="reference external" href="https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format">Sphinx style</a> to have a basic understanding of sphinx style docstring.</p>
+<section id="write-class-docstring">
+<h3>Write class docstring<a class="headerlink" href="#write-class-docstring" title="Permalink to this heading">#</a></h3>
+<p>Let’s start with a class example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">promptflow</span> <span class="kn">import</span> <span class="n">PFClient</span>
+
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;One-line summary of the class.</span>
+
+<span class="sd">    More detailed explanation of the class. May include below notes, admonitions, code blocks.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        Here are some notes to show, with a nested python code block:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            from promptflow import MyClass, PFClient</span>
+<span class="sd">            obj = MyClass(PFClient())</span>
+
+<span class="sd">    .. admonition:: [Title of the admonition]</span>
+
+<span class="sd">        Here are some admonitions to show.</span>
+
+<span class="sd">    :param client: Descrition of the client.</span>
+<span class="sd">    :type client: ~promptflow.PFClient</span>
+<span class="sd">    :param param_int: Description of the parameter.</span>
+<span class="sd">    :type param_int: Optional[int]</span>
+<span class="sd">    :param param_str: Description of the parameter.</span>
+<span class="sd">    :type param_str: Optional[str]</span>
+<span class="sd">    :param param_dict: Description of the parameter.</span>
+<span class="sd">    :type param_dict: Optional[Dict[str, str]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="n">client</span><span class="p">:</span> <span class="n">PFClient</span><span class="p">,</span>
+        <span class="n">param_int</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">param_str</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">param_dict</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;No docstring for __init__, it should be written in class definition above.&quot;&quot;&quot;</span>
+        <span class="o">...</span>
+
+
+</pre></div>
+</div>
+<p><strong>Notes</strong>:</p>
+<ol class="arabic">
+<li><p>One-line summary is required. It should be clear and concise.</p></li>
+<li><p>Detailed explanation is encouraged but not required. This part may or may not include notes, admonitions and code blocks.</p>
+<ul class="simple">
+<li><p>The format like <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">note::</span></code> is called <code class="docutils literal notranslate"><span class="pre">directive</span></code>. Directives are a mechanism to extend the content of <a class="reference external" href="https://docutils.sourceforge.io/rst.html">reStructuredText</a>. Every directive declares a block of content with specific role. Start a new line with <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">directive_name::</span></code> to use the directive.</p></li>
+<li><p>The directives used in the sample(<code class="docutils literal notranslate"><span class="pre">note/admonition/code-block</span></code>) should be enough for basic usage of docstring in our project. But you are welcomed to explore more <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#specific-admonitions">Directives</a>.</p></li>
+</ul>
+</li>
+<li><p>Parameter description and type is required.</p>
+<ul>
+<li><p>A pair of <code class="docutils literal notranslate"><span class="pre">:param</span> <span class="pre">[ParamName]:</span></code> and <code class="docutils literal notranslate"><span class="pre">:type</span> <span class="pre">[ParamName]:</span></code> is required.</p></li>
+<li><p>If the type is a promptflow public class, use the <code class="docutils literal notranslate"><span class="pre">full</span> <span class="pre">path</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">class</span></code> and prepend it with a “~”. This will create a link when the documentation is rendered on the doc site that will take the user to the class reference documentation for more information.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:param client: Descrition of the client.
+:type client: ~promptflow.PFClient
+</pre></div>
+</div>
+</li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">Union/Optional</span></code> when appropriate in function declaration. And use the same annotaion after <code class="docutils literal notranslate"><span class="pre">:type</span> <span class="pre">[ParamName]:</span></code></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:type param_int: Optional[int]
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>For classes, include docstring in definition only. If you include a docstring in both the class definition and the constructor (init method) docstrings, it will show up twice in the reference docs.</p></li>
+<li><p>Constructors (def <code class="docutils literal notranslate"><span class="pre">__init__</span></code>) should return <code class="docutils literal notranslate"><span class="pre">None</span></code>, per <a class="reference external" href="https://peps.python.org/pep-0484/#the-meaning-of-annotations">PEP 484 standards</a>.</p></li>
+<li><p>To create a link for promptflow class on our doc site. <code class="docutils literal notranslate"><span class="pre">~promptflow.xxx.MyClass</span></code> alone only works after <code class="docutils literal notranslate"><span class="pre">:type</span> <span class="pre">[ParamName]</span></code> and <code class="docutils literal notranslate"><span class="pre">:rtype:</span></code>. If you want to achieve the same effect in docstring summary, you should use it with <code class="docutils literal notranslate"><span class="pre">:class:</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">An example to achieve link effect in summary for :class:`~promptflow.xxx.MyClass`</span>
+<span class="sd">For function, use :meth:`~promptflow.xxx.my_func`</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>There are some tricks to highlight the content in your docstring:</p>
+<ul class="simple">
+<li><p>Single backticks (`): Single backticks are used to represent inline code elements within the text. It is typically used to highlight function names, variable names, or any other code elements within the documentation.</p></li>
+<li><p>Double backticks(``): Double backticks are typically used to highlight a literal value.</p></li>
+</ul>
+</li>
+<li><p>If there are any class level constants you don’t want to expose to doc site, make sure to add <code class="docutils literal notranslate"><span class="pre">_</span></code> in front of the constant to hide it.</p></li>
+</ol>
+</section>
+<section id="write-function-docstring">
+<h3>Write function docstring<a class="headerlink" href="#write-function-docstring" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="k">def</span> <span class="nf">my_method</span><span class="p">(</span><span class="n">param_int</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;One-line summary</span>
+
+<span class="sd">    Detailed explanations.</span>
+
+<span class="sd">    :param param_int: Description of the parameter.</span>
+<span class="sd">    :type param_int: int</span>
+<span class="sd">    :raises [ErrorType1]: [ErrorDescription1]</span>
+<span class="sd">    :raises [ErrorType2]: [ErrorDescription2]</span>
+<span class="sd">    :return: Description of the return value.</span>
+<span class="sd">    :rtype: int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>In addition to <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">docstring</span></code> notes:</p>
+<ol class="arabic simple">
+<li><p>Function docstring should include return values.</p>
+<ul class="simple">
+<li><p>If return type is promptflow class, we should also use <code class="docutils literal notranslate"><span class="pre">~promptflow.xxx.[ClassName]</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Function docstring should include exceptions that may be raised in this function.</p>
+<ul class="simple">
+<li><p>If exception type is <code class="docutils literal notranslate"><span class="pre">PromptflowException</span></code>, use <code class="docutils literal notranslate"><span class="pre">~promptflow.xxx.[ExceptionName]</span></code></p></li>
+<li><p>If multiple exceptions are raised, just add new lines of <code class="docutils literal notranslate"><span class="pre">:raises</span></code>, see the example above.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="how-to-build-doc-site-locally">
+<h2>How to build doc site locally<a class="headerlink" href="#how-to-build-doc-site-locally" title="Permalink to this heading">#</a></h2>
+<p>You can build the documentation site locally to preview the final effect of your docstring on the rendered site. This will provide you with a clear understanding of how your docstring will appear on our site once your changes are merged into the main branch.</p>
+<ol class="arabic">
+<li><p>Setup your dev environment, see <a class="reference internal" href="dev_setup.html"><span class="doc std std-doc">dev_setup</span></a> for details. Sphinx will load all source code to process docstring.</p>
+<ul class="simple">
+<li><p>Skip this step if you just want to build the doc site without reference doc, but do remove <code class="docutils literal notranslate"><span class="pre">-WithReferenceDoc</span></code> from the command in step 3.</p></li>
+</ul>
+</li>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">langchain</span></code> package since it is used in our code but not covered in <code class="docutils literal notranslate"><span class="pre">dev_setup</span></code>.</p></li>
+<li><p>Open a <code class="docutils literal notranslate"><span class="pre">powershell</span></code>, activate the conda env and navigate to <code class="docutils literal notranslate"><span class="pre">&lt;repo-root&gt;/scripts/docs</span></code> , run <code class="docutils literal notranslate"><span class="pre">doc_generation.ps1</span></code>:</p>
+<div class="highlight-pwsh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd </span><span class="n">scripts</span><span class="p">\</span><span class="n">docs</span>
+<span class="p">.\</span><span class="n">doc_generation</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-WithReferenceDoc</span> <span class="n">-WarningAsError</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>For the first time you execute this command, it will take some time to install <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> dependencies. After the initial installation, next time you can add param <code class="docutils literal notranslate"><span class="pre">-SkipInstall</span></code> to above command to save some time for dependency check.</p></li>
+</ul>
+</li>
+<li><p>Check warnings/errors in the build log, fix them if any, then build again.</p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">scripts/docs/_build/index.html</span></code> to preview the local doc site.</p></li>
+</ol>
+</section>
+<section id="additional-comments">
+<h2>Additional comments<a class="headerlink" href="#additional-comments" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Utilities</strong>: The <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring">autoDocstring</a> VSCode extension or GitHub Copilot can help autocomplete in this style for you.</p></li>
+<li><p><strong>Advanced principles</strong></p>
+<ul>
+<li><p>Accuracy: The documentation accurately reflects the features and functionality of the product.</p></li>
+<li><p>Completeness: The documentation covers all relevant features and functionality of the product.</p></li>
+<li><p>Demonstration: Every docstring should include an up-to-date code snippet that demonstrates how to use the product effectively.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ml/azure-ai-ml/documentation_guidelines.md">AzureML v2 Reference Documentation Guide</a></p></li>
+<li><p><a class="reference external" href="https://azure.github.io/azure-sdk/python_documentation.html#docstrings">Azure SDK for Python documentation guidelines</a></p></li>
+<li><p><a class="reference external" href="https://review.learn.microsoft.com/en-us/help/onboard/admin/reference/python/documenting-api?branch=main">How to document a Python API</a></p></li>
+</ul>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principles">
+   Principles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-write-the-docstring">
+   How to write the docstring
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-class-docstring">
+     Write class docstring
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-function-docstring">
+     Write function docstring
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-build-doc-site-locally">
+   How to build doc site locally
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-comments">
+   Additional comments
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+
+<div class="tocsection editthispage">
+    <a href="https://github.com//microsoft/promptflow/edit/main/docs/dev/documentation_guidelines.md">
+        <i class="fa-solid fa-pencil"></i> Edit this page
+    </a>
+</div>
+
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1e1de1a1873e13ef5536"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023, Microsoft.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>
