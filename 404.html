@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>Page not found - Promptflow</title>
+    <script>
+        function checkPath() {
+            // Redirect url to default python version
+            // Example current path: /promptflow/how-to-guides/quick-start.html
+            const currentPath = window.location.pathname;
+            const raw404 = "https://brynn.github.io/raw404.html";
+            // No language prefer in the url, fall back to python
+            // Example path after fall back: /promptflow/python/how-to-guides/quick-start.html
+            if (!currentPath.match(/(python|csharp|javascript)/gi)){
+                window.location.href = window.location.href.replace("brynn.github.io", "brynn.github.io/python");
+            } else if (window.location.href !== raw404){
+                window.location.href = raw404;
+            }
+        }
+    </script>
+</head>
+<body onload="checkPath()">
+</body>
+</html>
+```

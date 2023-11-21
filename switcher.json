@@ -2,17 +2,17 @@
   {
     "name": "Python",
     "version": "python",
-    "url": "https://brynn.github.io/promptflow/python/",
+    "url": "https://brynn.github.io/python/",
     "preferred": true
   },
   {
     "name": "JavaScript",
     "version": "javascript",
-    "url": "https://brynn.github.io/promptflow/javascript/"
+    "url": "https://brynn.github.io/javascript/"
   },
   {
     "name": "C#",
     "version": "csharp",
-    "url": "https://brynn.github.io/promptflow/csharp/"
+    "url": "https://brynn.github.io/csharp/"
   }
 ]
