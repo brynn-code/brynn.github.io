@@ -6,11 +6,11 @@
             // Redirect url to default python version
             // Example current path: /promptflow/how-to-guides/quick-start.html
             const currentPath = window.location.pathname;
-            const raw404 = "https://brynn.github.io/raw404.html";
+            const raw404 = "https://brynn.github.io/promptflow-page/raw404.html";
             // No language prefer in the url, fall back to python
             // Example path after fall back: /promptflow/python/how-to-guides/quick-start.html
-            if (!currentPath.match(/(python|csharp|javascript)/gi)){
-                window.location.href = window.location.href.replace("brynn.github.io", "brynn.github.io/python");
+            if (currentPath.includes('/promptflow-page') && !currentPath.match(/promptflow-page\/(python|csharp|javascript)/gi)){
+                window.location.href = window.location.href.replace("/promptflow-page", "/promptflow-page/python");
             } else if (window.location.href !== raw404){
                 window.location.href = raw404;
             }
